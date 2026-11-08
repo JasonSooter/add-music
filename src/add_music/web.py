@@ -23,7 +23,7 @@ from pydantic import BaseModel, Field
 
 from . import library
 from .catalog import Blocked, Catalog, Plan
-from .jellyfin import Jellyfin, LibraryIndex, norm
+from .jellyfin import Jellyfin, LibraryIndex, artist_keys, norm
 from .jobs import Store, Worker
 from .people import Person
 
@@ -94,8 +94,14 @@ def create_app(catalog: Catalog, store: Store, worker: Worker | None, people: di
             return src
         if s["id"] in refs or (s.get("album") or {}).get("id") in refs:
             return "queued"
-        if any(norm(pl.album) == norm(album) and any(norm(t.title) == norm(s["title"]) for t in pl.tracks) for pl in plans):
-            return "queued"
+        wanted = artist_keys(*(s.get("artists") or "").split(","))
+        for pl in plans:
+            if norm(pl.album) != norm(album):
+                continue
+            for t in pl.tracks:
+                if norm(t.title) == norm(s["title"]) and (
+                        not wanted or wanted & artist_keys(*t.artist.split(","), *pl.album_artist.split(","))):
+                    return "queued"
         return None
 
     def album_state(idx, refs, a) -> str | None:
