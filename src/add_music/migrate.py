@@ -33,7 +33,10 @@ def plan(store: Store, people_dir: Path) -> tuple[list[tuple[Path, str]], list[P
         p = store.plan_of(job["id"])
         target = library.album_path(people_dir / library.folder_name(job["who"]), p.album_artist, p.album)
         for t in p.tracks:
-            ids[target / f"{library.track_stem(t.number, t.title)}.m4a"] = t.video_id
+            # The FIRST completed job naming a file is the one that downloaded
+            # it; later jobs skip tracks that already exist (jobs.py), so their
+            # ids prove nothing about the file on disk.
+            ids.setdefault(target / f"{library.track_stem(t.number, t.title)}.m4a", t.video_id)
     known, unknown = [], []
     for f in sorted(people_dir.rglob("*.m4a")):
         if any(part.startswith(".") for part in f.relative_to(people_dir).parts):
@@ -56,6 +59,14 @@ def _tags(m4a: Path) -> dict:
 def convert(m4a: Path, video_id: str, staging: Path, download: Callable[[str, Path, str], Path]) -> Path:
     """Download the Opus version beside nothing, tag it like the M4A, move it
     into the M4A's folder, then remove the M4A."""
+    # A run that stopped after moving the Opus file in but before removing
+    # the M4A leaves both. Only this app writes the people folders, and it
+    # never keeps two formats of one track, so the Opus twin is ours: finish
+    # by removing the M4A instead of downloading again.
+    done = m4a.with_suffix(".opus")
+    if done.exists():
+        m4a.unlink()
+        return done
     tags = _tags(m4a)
     work = staging / f"migrate-{video_id}"
     shutil.rmtree(work, ignore_errors=True)
