@@ -35,3 +35,12 @@ def test_nothing_to_do_when_already_set():
     folders = FOLDERS + [{"Name": "Ellie's Music", "ItemId": "el"}]
     jf = jellyfin_with(folders=folders, users=users({"EnableAllFolders": False, "EnabledFolders": ["mu", "el", "m0"]}))
     assert plan(jf, parse_people("Ellie=ellie.sooter"), "/media/music-people") == ([], [])
+
+
+def test_former_persons_library_stays_private():
+    # Mac was removed from ADD_MUSIC_PEOPLE, but "Mac's Music" still exists.
+    folders = FOLDERS + [{"Name": "Ellie's Music", "ItemId": "el", "Locations": ["/media/music-people/Ellie"]},
+                         {"Name": "Mac's Music", "ItemId": "mc", "Locations": ["/media/music-people/Mac"]}]
+    jf = jellyfin_with(folders=folders, users=users({"EnableAllFolders": True}))
+    _, [p] = plan(jf, parse_people("Ellie=ellie.sooter"), "/media/music-people")
+    assert "mc" not in p["policy"]["EnabledFolders"]
