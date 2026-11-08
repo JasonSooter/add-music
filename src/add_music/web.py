@@ -120,10 +120,18 @@ def create_app(catalog: Catalog, store: Store, worker: Worker | None, people: di
             for a in data.get(key, []):
                 a["state"] = album_state(idx, refs, a) or ("later" if cooling(p, a["id"]) else None)
         if data.get("type") == "album":
-            data["state"] = album_state(idx, refs, data) or ("later" if cooling(p, data["id"]) else None)
             for t in data.get("tracks", []):
-                t["state"] = song_state(idx, refs, plans, {**t, "album": {"id": data["id"], "name": data["title"]}}) or (
+                song = {**t, "artists": f"{t.get('artists') or ''}, {data.get('artists') or ''}",
+                        "album": {"id": data["id"], "name": data["title"]}}
+                t["state"] = song_state(idx, refs, plans, song) or (
                     "later" if cooling(p, t["id"]) else None)
+            state = album_state(idx, refs, data)
+            # One added song makes Jellyfin list the album as "mine"; it is
+            # only complete -- and "Add whole album" only pointless -- when
+            # every song is there.
+            if state == "mine" and any(t["state"] != "mine" for t in data.get("tracks", [])):
+                state = None
+            data["state"] = state or ("later" if cooling(p, data["id"]) else None)
         return data
 
     def gate(p: Person, req: AddRequest, plan: Plan) -> None:

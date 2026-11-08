@@ -194,3 +194,24 @@ def test_queued_song_needs_same_artist(env, yt):
     ]
     songs = client.get("/api/search", params={"q": "x", "who": "Ellie"}).json()["songs"]
     assert [(s["id"], s["state"]) for s in songs] == [("same1", "queued"), ("diff1", None)]
+
+
+
+def _own(jf, tracks):
+    fake = jellyfin_with(
+        albums=[{"Id": "o1", "Name": KITA, "AlbumArtist": "Rolf Zuckowski", "Path": "/media/music-people/Ellie/R/K"}],
+        tracks=[{"Name": t["title"], "Album": KITA, "AlbumArtist": "Rolf Zuckowski", "Artists": [t["artists"][0]["name"]],
+                 "Path": "/media/music-people/Ellie/R/K/x.m4a"}
+                for t in tracks])
+    jf._get = fake._get
+    jf.forget()
+
+
+def test_partial_album_can_be_completed(env, yt):
+    client, _, jf, _ = env
+    _own(jf, yt.albums[ALBUM_ID]["tracks"][:1])
+    a = client.get(f"/api/album/{ALBUM_ID}", params={"who": "Ellie"}).json()
+    assert a["state"] is None
+    assert a["tracks"][0]["state"] == "mine" and a["tracks"][1]["state"] is None
+    assert add(client).status_code == 201
+
