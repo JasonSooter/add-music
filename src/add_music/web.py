@@ -151,6 +151,10 @@ def create_app(catalog: Catalog, store: Store, worker: Worker | None, people: di
         if has_all(p, plan):
             raise HTTPException(409, "That's already in your library!")
         idx = index(p)
+        # Complete in Jellyfin even if not under this app's file names (an
+        # edition with a different title, files filed by hand).
+        if all(idx.track_source(t.title, plan.album, f"{t.artist}, {plan.album_artist}") == "mine" for t in plan.tracks):
+            raise HTTPException(409, "That's already in your library!")
         if plan.kind == "album":
             src = idx.album_source(plan.album, plan.album_artist)
             if src == "shared":

@@ -215,3 +215,10 @@ def test_partial_album_can_be_completed(env, yt):
     assert a["tracks"][0]["state"] == "mine" and a["tracks"][1]["state"] is None
     assert add(client).status_code == 201
 
+
+def test_complete_album_in_jellyfin_is_refused(env, yt):
+    client, _, jf, _ = env
+    _own(jf, yt.albums[ALBUM_ID]["tracks"])
+    assert client.get(f"/api/album/{ALBUM_ID}", params={"who": "Ellie"}).json()["state"] == "mine"
+    r = add(client)
+    assert r.status_code == 409 and "your library" in r.json()["detail"]
