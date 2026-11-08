@@ -168,13 +168,16 @@ $("who").onclick = pickWho;
 // ---- adding ------------------------------------------------------------
 async function add(btn, body) {
   if (!who) return pickWho();
+  // The song list of the album whose button this is -- captured now, because
+  // the view may have changed by the time the request answers.
+  const albumList = body.kind === "album" ? $("view").querySelector(".list") : null;
   btn.disabled = true; btn.textContent = "Adding…";
   try {
     await api("api/requests", { method: "POST", headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ ...body, who }) });
     btn.textContent = "✓ Added"; btn.classList.add("done");
     // A whole album covers its songs too.
-    if (body.kind === "album") for (const b of $("view").querySelectorAll(".list .add")) b.replaceWith(badge("queued"));
+    if (albumList?.isConnected) for (const b of albumList.querySelectorAll(".add")) b.replaceWith(badge("queued"));
     toast("On its way! It will show up in Jellyfin soon.");
     $("tray").open = true; loadJobs();
   } catch (e) {
