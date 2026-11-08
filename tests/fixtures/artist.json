@@ -1,0 +1,617 @@
+{
+ "views": "561,188,353 views",
+ "name": "Cargo",
+ "channelId": "UCafNlR92d6W0e9ow_QHRx1w",
+ "shuffleId": "RDAOdBOCboYkcyK4K88428gQBA",
+ "radioId": "RDEMdBOCboYkcyK4K88428gQBA",
+ "subscribers": "497K",
+ "monthlyListeners": "2.44M",
+ "subscribed": false,
+ "thumbnails": [
+  {
+   "url": "https://lh3.googleusercontent.com/HQN_bhQhOE1tLCGHoYjLWbwubdEHYr9WSdDKFwCUKtp6G7lVGlY3c6iGG-m-ks8SHGNyjGD_pjz7hqc=w540-h225-p-l90-rj",
+   "width": 540,
+   "height": 225
+  },
+  {
+   "url": "https://lh3.googleusercontent.com/HQN_bhQhOE1tLCGHoYjLWbwubdEHYr9WSdDKFwCUKtp6G7lVGlY3c6iGG-m-ks8SHGNyjGD_pjz7hqc=w816-h340-p-l90-rj",
+   "width": 816,
+   "height": 340
+  },
+  {
+   "url": "https://lh3.googleusercontent.com/HQN_bhQhOE1tLCGHoYjLWbwubdEHYr9WSdDKFwCUKtp6G7lVGlY3c6iGG-m-ks8SHGNyjGD_pjz7hqc=w1440-h600-p-l90-rj",
+   "width": 1440,
+   "height": 600
+  },
+  {
+   "url": "https://lh3.googleusercontent.com/HQN_bhQhOE1tLCGHoYjLWbwubdEHYr9WSdDKFwCUKtp6G7lVGlY3c6iGG-m-ks8SHGNyjGD_pjz7hqc=w1920-h800-p-l90-rj",
+   "width": 1920,
+   "height": 800
+  },
+  {
+   "url": "https://lh3.googleusercontent.com/HQN_bhQhOE1tLCGHoYjLWbwubdEHYr9WSdDKFwCUKtp6G7lVGlY3c6iGG-m-ks8SHGNyjGD_pjz7hqc=w2048-h853-p-l90-rj",
+   "width": 2048,
+   "height": 853
+  }
+ ],
+ "songs": {
+  "browseId": "VLOLAK5uy_n4Td7qeJywLUdM3Etef8_cq1MSwdC98sM",
+  "results": [
+   {
+    "videoId": "oK_9saNEzxU",
+    "title": "Die Jahresuhr",
+    "artists": [
+     {
+      "name": "Rolf Zuckowski und seine Freunde",
+      "id": "UC56hLMPuEsERdmTBbR_JGHA"
+     }
+    ],
+    "album": {
+     "name": "Rolfs Liederkalender / Die Jahresuhr",
+     "id": "MPREb_MbqNdNXKgg2"
+    },
+    "likeStatus": null,
+    "inLibrary": false,
+    "pinnedToListenAgain": false,
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/NRmEerdapDYahSiBe1bD4dkk1R5rm3boTWpuvEADmiyQqDWESID7VVKEP0YTH8Pdiry4B_FP_d58zCc=w60-h60-s-l90-rj",
+      "width": 60,
+      "height": 60
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/NRmEerdapDYahSiBe1bD4dkk1R5rm3boTWpuvEADmiyQqDWESID7VVKEP0YTH8Pdiry4B_FP_d58zCc=w120-h120-s-l90-rj",
+      "width": 120,
+      "height": 120
+     }
+    ],
+    "isAvailable": true,
+    "isExplicit": false,
+    "videoType": "MUSIC_VIDEO_TYPE_ATV",
+    "views": null,
+    "communityVoteStatus": null,
+    "creditsBrowseId": "MPTCoK_9saNEzxU"
+   },
+   {
+    "videoId": "F0xM-j6_sDo",
+    "title": "In der Weihnachtsbäckerei",
+    "artists": [
+     {
+      "name": "Rolf Zuckowski und seine Freunde",
+      "id": "UC56hLMPuEsERdmTBbR_JGHA"
+     }
+    ],
+    "album": {
+     "name": "Schlagerhits Weihnachten",
+     "id": "MPREb_HqgsmMcSDLT"
+    },
+    "likeStatus": null,
+    "inLibrary": false,
+    "pinnedToListenAgain": false,
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/BZbqoXnVH8Mf2tI9fSIxFFifqx4CKe8dMPbOIdnn9Tzq8ji_vc27KdVyE28eSeeyY48InBOkUtvPldQ=w60-h60-l90-rj",
+      "width": 60,
+      "height": 60
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/BZbqoXnVH8Mf2tI9fSIxFFifqx4CKe8dMPbOIdnn9Tzq8ji_vc27KdVyE28eSeeyY48InBOkUtvPldQ=w120-h120-l90-rj",
+      "width": 120,
+      "height": 120
+     }
+    ],
+    "isAvailable": true,
+    "isExplicit": false,
+    "videoType": "MUSIC_VIDEO_TYPE_ATV",
+    "views": null,
+    "communityVoteStatus": null,
+    "creditsBrowseId": "MPTCF0xM-j6_sDo"
+   },
+   {
+    "videoId": "T6DebfP7eDk",
+    "title": "Als ich ein Baby war",
+    "artists": [
+     {
+      "name": "Rolf Zuckowski und seine Freunde",
+      "id": "UC56hLMPuEsERdmTBbR_JGHA"
+     }
+    ],
+    "album": {
+     "name": "Du brauchst ein Lied",
+     "id": "MPREb_2xliKMZbZnM"
+    },
+    "likeStatus": null,
+    "inLibrary": false,
+    "pinnedToListenAgain": false,
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/r87ZzCisU676SFvsOO2nlQUPPhur8pUPmyB9Bn_Gm1qXQjBOQTrx1vVPSAHUOrmIKdb0VejrGyLP9xLc=w60-h60-s-l90-rj",
+      "width": 60,
+      "height": 60
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/r87ZzCisU676SFvsOO2nlQUPPhur8pUPmyB9Bn_Gm1qXQjBOQTrx1vVPSAHUOrmIKdb0VejrGyLP9xLc=w120-h120-s-l90-rj",
+      "width": 120,
+      "height": 120
+     }
+    ],
+    "isAvailable": true,
+    "isExplicit": false,
+    "videoType": "MUSIC_VIDEO_TYPE_ATV",
+    "views": null,
+    "communityVoteStatus": null,
+    "creditsBrowseId": "MPTCT6DebfP7eDk"
+   },
+   {
+    "videoId": "pmAtPLCebzM",
+    "title": "Stups, der kleine Osterhase",
+    "artists": [
+     {
+      "name": "Rolf Zuckowski und seine Freunde",
+      "id": "UC56hLMPuEsERdmTBbR_JGHA"
+     }
+    ],
+    "album": {
+     "name": "Radio Lollipop",
+     "id": "MPREb_gEAjB7ZrtAH"
+    },
+    "likeStatus": null,
+    "inLibrary": false,
+    "pinnedToListenAgain": false,
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/f3Zu-7s6xaXu0h27ECl_X9MW_XiMZKN5hnMfqBQeIz6KtBzzUNpQkOgLyE94nJxlBrBJDPbGUsmYuCi9hA=w60-h60-l90-rj",
+      "width": 60,
+      "height": 60
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/f3Zu-7s6xaXu0h27ECl_X9MW_XiMZKN5hnMfqBQeIz6KtBzzUNpQkOgLyE94nJxlBrBJDPbGUsmYuCi9hA=w120-h120-l90-rj",
+      "width": 120,
+      "height": 120
+     }
+    ],
+    "isAvailable": true,
+    "isExplicit": false,
+    "videoType": "MUSIC_VIDEO_TYPE_ATV",
+    "views": null,
+    "communityVoteStatus": null,
+    "creditsBrowseId": "MPTCpmAtPLCebzM"
+   },
+   {
+    "videoId": "aKD5_sOAGow",
+    "title": "Der Herbst - 1. Tanz und Gesang der Landleute - Der Betrunkene - Der schlafende Zecher",
+    "artists": [
+     {
+      "name": "Rolf Zuckowski",
+      "id": "UC56hLMPuEsERdmTBbR_JGHA"
+     },
+     {
+      "name": "Roberto Michelucci",
+      "id": "UCyDYfdrQa9QOvptEkyNZvkw"
+     },
+     {
+      "name": "I Musici",
+      "id": "UCr5GLtm47Zfwfuf7YfoFKMQ"
+     }
+    ],
+    "album": {
+     "name": "Die vier Jahreszeiten des kleinen Bären - Das große Abenteuer Musik - Folge 1",
+     "id": "MPREb_gEmyBYG3MWC"
+    },
+    "likeStatus": null,
+    "inLibrary": false,
+    "pinnedToListenAgain": false,
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/2cAGuoz4HZPMNX1aWcq9zD8Q2b8ViOvHoVj0rvn_QQGxycwA7QIAlqzjasstdHlZLwZVvhknVQZiBAIymg=w60-h60-l90-rj",
+      "width": 60,
+      "height": 60
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/2cAGuoz4HZPMNX1aWcq9zD8Q2b8ViOvHoVj0rvn_QQGxycwA7QIAlqzjasstdHlZLwZVvhknVQZiBAIymg=w120-h120-l90-rj",
+      "width": 120,
+      "height": 120
+     }
+    ],
+    "isAvailable": true,
+    "isExplicit": false,
+    "videoType": "MUSIC_VIDEO_TYPE_ATV",
+    "views": null,
+    "communityVoteStatus": null,
+    "creditsBrowseId": "MPTCaKD5_sOAGow"
+   }
+  ]
+ },
+ "albums": {
+  "browseId": "MPADUC56hLMPuEsERdmTBbR_JGHA",
+  "results": [
+   {
+    "title": "Starke Kinder - Lieder, die Mut machen",
+    "artists": [],
+    "browseId": "MPREb_KC9sX4u6HKd",
+    "audioPlaylistId": "OLAK5uy_kitFpYEukjrHIafeJK8Uxci31iP0S_UaI",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/Tl-_zM0lfFOMLbLZGTn6nQYKlTXtyHHJggwSX972uqUucVLL_Kmtnrticb8qJ3r9vJfj_JOtnPJHkBuY=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/Tl-_zM0lfFOMLbLZGTn6nQYKlTXtyHHJggwSX972uqUucVLL_Kmtnrticb8qJ3r9vJfj_JOtnPJHkBuY=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2026"
+   },
+   {
+    "title": "Weihnachten und Winter mit Rolf Zuckowski",
+    "artists": [],
+    "browseId": "MPREb_eUUJz7uLQxJ",
+    "audioPlaylistId": "OLAK5uy_lI9vPUbopTdtIK2GuuhjkaKFKJKDq5-WU",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/iTVZ4o1nkGwNzMx9kbf6EGmM_UCx3wVRB0C6m4VuWAna8N4_ZGpmliX7XgWAlk4VDl1ujO5hy7dHylrw=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/iTVZ4o1nkGwNzMx9kbf6EGmM_UCx3wVRB0C6m4VuWAna8N4_ZGpmliX7XgWAlk4VDl1ujO5hy7dHylrw=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2026"
+   },
+   {
+    "title": "Kinderlieder zum Schulanfang mit Rolf Zuckowski und seinen Freunden",
+    "artists": [],
+    "browseId": "MPREb_gIHHZl2Ri65",
+    "audioPlaylistId": "OLAK5uy_kR9A4xaPqqubym_bWEyw42dh5ZtzepUHI",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/cwABMVK6cQlDyH8YVEhKceN-96dmxt2814_jVJ3e313CEZcjYMV-6K610Ne_FaMSggeJtTtUm0wT61wSLA=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/cwABMVK6cQlDyH8YVEhKceN-96dmxt2814_jVJ3e313CEZcjYMV-6K610Ne_FaMSggeJtTtUm0wT61wSLA=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2026"
+   },
+   {
+    "title": "Frühling und Ostern Kinderlieder von Rolf Zuckowski",
+    "artists": [],
+    "browseId": "MPREb_kK3MNdvkOGR",
+    "audioPlaylistId": "OLAK5uy_n3qL5M9ekRSSS8VNB2zi-63BRBGluTmpA",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/hX4-nYPkdGuFeQk82ADU1Nf3U7xPZZqgegJoAPkyrZ1OPrEKa_DytA3R8sRVarAoqxTP8uUNurok3XP9=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/hX4-nYPkdGuFeQk82ADU1Nf3U7xPZZqgegJoAPkyrZ1OPrEKa_DytA3R8sRVarAoqxTP8uUNurok3XP9=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2026"
+   },
+   {
+    "title": "Karneval & Fasching – Spaßlieder mit Rolf Zuckowski",
+    "artists": [],
+    "browseId": "MPREb_vZDCPkaImdS",
+    "audioPlaylistId": "OLAK5uy_n4vT0Lz948YBvpFI8O4t6hfg3fEsIvhQc",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/mUoE6yXlm-QaRmJ186jJ4hi-OoJ7_oNLcJFUR2owZz8pbsrvrkp3ZY_GcbOWUDdABxjvm1Htbck022RuSw=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/mUoE6yXlm-QaRmJ186jJ4hi-OoJ7_oNLcJFUR2owZz8pbsrvrkp3ZY_GcbOWUDdABxjvm1Htbck022RuSw=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2026"
+   },
+   {
+    "title": "Sehnsucht nach Weihnachten - Die Lieder und Playbacks",
+    "artists": [],
+    "browseId": "MPREb_FNkO8gJBLJE",
+    "audioPlaylistId": "OLAK5uy_nxIf1KauXsxjPKPq0t0m8SJzgp7-czCWs",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/iU2gD4H6Ha_N7umvsFAipEGAEi1d4OEFPnLfed5s6IufhsMa3AHcuDYvnPZP3x6Q_dbWSYEV-uyNwXM=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/iU2gD4H6Ha_N7umvsFAipEGAEi1d4OEFPnLfed5s6IufhsMa3AHcuDYvnPZP3x6Q_dbWSYEV-uyNwXM=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2025"
+   },
+   {
+    "title": "Laterne Laufen mit Rolf Zuckowski",
+    "artists": [],
+    "browseId": "MPREb_IHnGFyXbmNb",
+    "audioPlaylistId": "OLAK5uy_kTlmdTTi0w41KZZlhiKaSWPq8srrhVYJU",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/gvzJyDGakQoe5DiqpBtnTDANo8kBJmlKMIKXnO7rOdI197NpwvXJhGWOxV1opq9T0r6l2aDPxWROBuE=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/gvzJyDGakQoe5DiqpBtnTDANo8kBJmlKMIKXnO7rOdI197NpwvXJhGWOxV1opq9T0r6l2aDPxWROBuE=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2025"
+   },
+   {
+    "title": "Mit Kindern singen - Rolfs Gitarrenschule",
+    "artists": [],
+    "browseId": "MPREb_bu0NIIpECRE",
+    "audioPlaylistId": "OLAK5uy_nAcg2k34_wI08VOYkAFNH5W7CFYZOV1RE",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/yJd8MukI1xIvfn81MkZ1hlL-EMliKK16QgsNB8GuJ-AMPf7d7qd0XcYWqBBQu_uSstpiGDIIWSFHH302=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/yJd8MukI1xIvfn81MkZ1hlL-EMliKK16QgsNB8GuJ-AMPf7d7qd0XcYWqBBQu_uSstpiGDIIWSFHH302=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2025"
+   },
+   {
+    "title": "Einschlaflieder mit Rolf Zuckowski",
+    "artists": [],
+    "browseId": "MPREb_O6mdVOmwzRP",
+    "audioPlaylistId": "OLAK5uy_kTWHY7J8cxjzN7uPAstLZBJYwuOQuQjbs",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/NWoytLSchpvciLs2_lN8bENWDt0PMj4GugSxy5m_5ZYEK02If_-AC7Xv0KpZUlDayO22u3zO41LptEwb=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/NWoytLSchpvciLs2_lN8bENWDt0PMj4GugSxy5m_5ZYEK02If_-AC7Xv0KpZUlDayO22u3zO41LptEwb=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2024"
+   },
+   {
+    "title": "Spielen und Lernen mit Rolf Zuckowski",
+    "artists": [],
+    "browseId": "MPREb_GAhYYiiZX9n",
+    "audioPlaylistId": "OLAK5uy_lFH21WYZu9ZGA40ieUroH6j1sjhztaPuc",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/gr2jk35oWfnQ6yjlPjc-tBoYHHh1VzuCBfpvywJ8-nC1qV83cDhVAZ9UGjmr8oe9uxAcs-DaOG-UQCOa=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/gr2jk35oWfnQ6yjlPjc-tBoYHHh1VzuCBfpvywJ8-nC1qV83cDhVAZ9UGjmr8oe9uxAcs-DaOG-UQCOa=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "isExplicit": false,
+    "year": "2024"
+   }
+  ],
+  "params": "ggMIegYIARoCAQI%3D"
+ },
+ "singles": {
+  "browseId": "MPADUC56hLMPuEsERdmTBbR_JGHA",
+  "results": [
+   {
+    "title": "So wie du bist (tiptoi Version 2026)",
+    "browseId": "MPREb_qCwx22j5STv",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/S3xZ1KwE-7O0CrFAB6hWNm_looKdZYgCSi4Kdjw0C7zPI-QH0X6WIDTloC2w3q88DRroeMs7guo-HwY=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/S3xZ1KwE-7O0CrFAB6hWNm_looKdZYgCSi4Kdjw0C7zPI-QH0X6WIDTloC2w3q88DRroeMs7guo-HwY=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2026"
+   },
+   {
+    "title": "Nikki das Nachtlicht",
+    "browseId": "MPREb_TFd0EzZJBp8",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/jM8Tm0yGEZOzkwSUS_KT_mhpKTg0IW3EDU58DyVV5eIeT3JnFQm56vWQshjoNM0OhgbnP0RP2rWcd4uY=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/jM8Tm0yGEZOzkwSUS_KT_mhpKTg0IW3EDU58DyVV5eIeT3JnFQm56vWQshjoNM0OhgbnP0RP2rWcd4uY=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2026"
+   },
+   {
+    "title": "In der Weihnachtsbäckerei (Arr. Schindler for Piano)",
+    "browseId": "MPREb_MEkEdUcgWZz",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/6wD2vLrjCnaGth8ybFf3GT0uOY4jptbXIPuw8JSZf10kcfzqy5B4iC9y4fMiJGy0pSHxQ5igTfFVAGt1=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/6wD2vLrjCnaGth8ybFf3GT0uOY4jptbXIPuw8JSZf10kcfzqy5B4iC9y4fMiJGy0pSHxQ5igTfFVAGt1=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2025"
+   },
+   {
+    "title": "Bald ist Weihnachten",
+    "browseId": "MPREb_MLn7bNx5UP1",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/N2qwCS7jPqIE2OzQKKgtgCtMjp_WJgM9rl_uH4nze1tI7Xho4YwjX6pNQd9Rg6d7giW_AuKZwpEPyG_c=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/N2qwCS7jPqIE2OzQKKgtgCtMjp_WJgM9rl_uH4nze1tI7Xho4YwjX6pNQd9Rg6d7giW_AuKZwpEPyG_c=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2025"
+   },
+   {
+    "title": "Wär' uns der Himmel immer so nah (Duett Version)",
+    "browseId": "MPREb_ytx6qL1WEQU",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/-x44665ip5advr7iB2aeehqKowY7JufGdMUUCK9-wcCRvqo1f5ns2tnmjvXWIGD0hPisMxbBjOWEmrM=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/-x44665ip5advr7iB2aeehqKowY7JufGdMUUCK9-wcCRvqo1f5ns2tnmjvXWIGD0hPisMxbBjOWEmrM=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2024"
+   },
+   {
+    "title": "Wir fahr’n mit dem Halunder Jet (nach Helgoland)",
+    "browseId": "MPREb_tC1xff9weeG",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/D0N7DXyLCHrC3hGsiVPmiGM1aMeqY7hol_xl1BjMJP0QS7lQmQ2IZY_aBONSNo3XwwfL3FmQOZjiLm4=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/D0N7DXyLCHrC3hGsiVPmiGM1aMeqY7hol_xl1BjMJP0QS7lQmQ2IZY_aBONSNo3XwwfL3FmQOZjiLm4=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2024"
+   },
+   {
+    "title": "Bald reite ich",
+    "browseId": "MPREb_U42a8g7mBv7",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/0mJZLHnEnzYpgnP_Aapwj_GK9PptYLizSLHizLS9XAjHbhO7R9Cc2__fzm0L5iDEDUiruPPC3kk2bFn1=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/0mJZLHnEnzYpgnP_Aapwj_GK9PptYLizSLHizLS9XAjHbhO7R9Cc2__fzm0L5iDEDUiruPPC3kk2bFn1=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2023"
+   },
+   {
+    "title": "Bei der Weihnachtsreiterei",
+    "browseId": "MPREb_tywJqp9WqgT",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/nig7OuAOj0BWhwpmUTaFhrEatIRqQWsM3FwH0rbN7I01DG04XrEDU8FJbKJO904WXUNDNjGNFnSfVhw=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/nig7OuAOj0BWhwpmUTaFhrEatIRqQWsM3FwH0rbN7I01DG04XrEDU8FJbKJO904WXUNDNjGNFnSfVhw=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2022"
+   },
+   {
+    "title": "Weiter so (mit 75)",
+    "browseId": "MPREb_JGLDAQzQYiP",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/mlWE05-qPjFiEVArVpaF3DffzLMCXuMu5T5vAUf3qR9ilBiPU_sF-aeaXDuhrOhOA9MwA3jmTi7ldZJ1=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/mlWE05-qPjFiEVArVpaF3DffzLMCXuMu5T5vAUf3qR9ilBiPU_sF-aeaXDuhrOhOA9MwA3jmTi7ldZJ1=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2022"
+   },
+   {
+    "title": "Little Darling",
+    "browseId": "MPREb_LvBUyN63tqq",
+    "thumbnails": [
+     {
+      "url": "https://yt3.googleusercontent.com/LIkPe9Cfohj_VwvC9DkLDtuIwwTmLgBmvQjF3LfQD5fIrSRUJrHmJh0iP9gF05Su9trbjcHV8Eezs-2ahQ=w226-h226-l90-rj",
+      "width": 226,
+      "height": 226
+     },
+     {
+      "url": "https://yt3.googleusercontent.com/LIkPe9Cfohj_VwvC9DkLDtuIwwTmLgBmvQjF3LfQD5fIrSRUJrHmJh0iP9gF05Su9trbjcHV8Eezs-2ahQ=w544-h544-l90-rj",
+      "width": 544,
+      "height": 544
+     }
+    ],
+    "type": "Single",
+    "year": "2022"
+   }
+  ],
+  "params": "ggMIegYIAhoCAQI%3D"
+ }
+}

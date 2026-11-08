@@ -1,0 +1,1751 @@
+{
+ "title": "Hamilton (Original Broadway Cast Recording)",
+ "type": "Album",
+ "thumbnails": [
+  {
+   "url": "https://yt3.googleusercontent.com/IxfuppIaBOSBcV5broTurFnnCa5mm15jhmAJ4zywxIWnBBNShUPfRvno3mR2zhLQQjSXLZQIF-tnTMcd=w60-h60-l90-rj",
+   "width": 60,
+   "height": 60
+  },
+  {
+   "url": "https://yt3.googleusercontent.com/IxfuppIaBOSBcV5broTurFnnCa5mm15jhmAJ4zywxIWnBBNShUPfRvno3mR2zhLQQjSXLZQIF-tnTMcd=w120-h120-l90-rj",
+   "width": 120,
+   "height": 120
+  },
+  {
+   "url": "https://yt3.googleusercontent.com/IxfuppIaBOSBcV5broTurFnnCa5mm15jhmAJ4zywxIWnBBNShUPfRvno3mR2zhLQQjSXLZQIF-tnTMcd=w226-h226-l90-rj",
+   "width": 226,
+   "height": 226
+  },
+  {
+   "url": "https://yt3.googleusercontent.com/IxfuppIaBOSBcV5broTurFnnCa5mm15jhmAJ4zywxIWnBBNShUPfRvno3mR2zhLQQjSXLZQIF-tnTMcd=w544-h544-l90-rj",
+   "width": 544,
+   "height": 544
+  }
+ ],
+ "isExplicit": false,
+ "year": "2015",
+ "artists": [
+  {
+   "name": "Lin-Manuel Miranda",
+   "id": "UCAFIersvPYEQzT7XPRWUj8g"
+  }
+ ],
+ "trackCount": 46,
+ "duration": "2 hours, 22 minutes",
+ "audioPlaylistId": "OLAK5uy_lXqIRZtLoDPhkivuHfrMVK_dXI3fyiHJk",
+ "likeStatus": "INDIFFERENT",
+ "tracks": [
+  {
+   "videoId": "cuyMAneJqms",
+   "title": "Alexander Hamilton",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "156M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 1,
+   "duration": "3:57",
+   "duration_seconds": 237,
+   "creditsBrowseId": "MPTCVhinPd5RRJw"
+  },
+  {
+   "videoId": "LOUf8Z0RQic",
+   "title": "Aaron Burr, Sir",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "68M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 2,
+   "duration": "2:37",
+   "duration_seconds": 157,
+   "creditsBrowseId": "MPTCLOUf8Z0RQic"
+  },
+  {
+   "videoId": "lZ4UmlFNdSI",
+   "title": "My Shot",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "96M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 3,
+   "duration": "5:34",
+   "duration_seconds": 334,
+   "creditsBrowseId": "MPTCIc7NqP_YGlg"
+  },
+  {
+   "videoId": "3vqwrepaMR0",
+   "title": "The Story of Tonight",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "37M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 4,
+   "duration": "1:32",
+   "duration_seconds": 92,
+   "creditsBrowseId": "MPTC3vqwrepaMR0"
+  },
+  {
+   "videoId": "8da1KdwgwFE",
+   "title": "The Schuyler Sisters",
+   "artists": [
+    {
+     "name": "Renée Elise Goldsberry",
+     "id": "UCX-_QpjnTPOumVDGVsDGezQ"
+    },
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    },
+    {
+     "name": "Jasmine Cephas-Jones",
+     "id": "UCvhI4yV39YDY4Fa8BYiF16A"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "103M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 5,
+   "duration": "3:07",
+   "duration_seconds": 187,
+   "creditsBrowseId": "MPTCUeqKF_NF1Qs"
+  },
+  {
+   "videoId": "IRImIezjxRg",
+   "title": "Farmer Refuted",
+   "artists": [
+    {
+     "name": "Thayne Jasperson",
+     "id": "UCrHU3a6NOvY8GWgE4lYJlow"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "34M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 6,
+   "duration": "1:53",
+   "duration_seconds": 113,
+   "creditsBrowseId": "MPTCIRImIezjxRg"
+  },
+  {
+   "videoId": "fFq6Ajj5YjY",
+   "title": "You'll Be Back",
+   "artists": [
+    {
+     "name": "Jonathan Groff",
+     "id": "UC5erOKcUMZJB0DFaIhs-yzA"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "109M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 7,
+   "duration": "3:29",
+   "duration_seconds": 209,
+   "creditsBrowseId": "MPTCeKFN-aqPJH8"
+  },
+  {
+   "videoId": "0JR0ApUALOQ",
+   "title": "Right Hand Man",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "38M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 8,
+   "duration": "5:22",
+   "duration_seconds": 322,
+   "creditsBrowseId": "MPTC0JR0ApUALOQ"
+  },
+  {
+   "videoId": "WO8Z6S7oHTw",
+   "title": "A Winter's Ball",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "31M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 9,
+   "duration": "1:10",
+   "duration_seconds": 70,
+   "creditsBrowseId": "MPTCWO8Z6S7oHTw"
+  },
+  {
+   "videoId": "ROZBx89NZmQ",
+   "title": "Helpless",
+   "artists": [
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "96M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 10,
+   "duration": "4:10",
+   "duration_seconds": 250,
+   "creditsBrowseId": "MPTC6frd_dHxPRs"
+  },
+  {
+   "videoId": "YCxxWli-gkA",
+   "title": "Satisfied",
+   "artists": [
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    },
+    {
+     "name": "Renée Elise Goldsberry",
+     "id": "UCX-_QpjnTPOumVDGVsDGezQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "150M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 11,
+   "duration": "5:30",
+   "duration_seconds": 330,
+   "creditsBrowseId": "MPTCInupuylYdcY"
+  },
+  {
+   "videoId": "YDvFRNvIEkg",
+   "title": "The Story of Tonight (Reprise)",
+   "artists": [
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "24M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 12,
+   "duration": "1:56",
+   "duration_seconds": 116,
+   "creditsBrowseId": "MPTC7ZY36ygpgSQ"
+  },
+  {
+   "videoId": "vZH8TyHUzRQ",
+   "title": "Wait for It",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "100M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 13,
+   "duration": "3:14",
+   "duration_seconds": 194,
+   "creditsBrowseId": "MPTCulsLI029rH0"
+  },
+  {
+   "videoId": "77QGXmEHFlM",
+   "title": "Stay Alive",
+   "artists": [
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "29M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 14,
+   "duration": "2:40",
+   "duration_seconds": 160,
+   "creditsBrowseId": "MPTCu44jORNkM3g"
+  },
+  {
+   "videoId": "m7iHmuco_zo",
+   "title": "Ten Duel Commandments",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Jon Rua",
+     "id": "UCIcDX2VK162JMEif6WIB5DA"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "30M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 15,
+   "duration": "1:47",
+   "duration_seconds": 107,
+   "creditsBrowseId": "MPTCm7iHmuco_zo"
+  },
+  {
+   "videoId": "alQKTQdEE-0",
+   "title": "Meet Me Inside",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Christopher Jackson",
+     "id": "UCZo2dWJt1fVhIj6liXaol7g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "21M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 16,
+   "duration": "1:24",
+   "duration_seconds": 84,
+   "creditsBrowseId": "MPTCalQKTQdEE-0"
+  },
+  {
+   "videoId": "Ryh_LrPz9wI",
+   "title": "That Would Be Enough",
+   "artists": [
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "30M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 17,
+   "duration": "2:59",
+   "duration_seconds": 179,
+   "creditsBrowseId": "MPTCkK9c41WgNpc"
+  },
+  {
+   "videoId": "JDL6R2KS3xg",
+   "title": "Guns and Ships",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Christopher Jackson",
+     "id": "UCZo2dWJt1fVhIj6liXaol7g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "83M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 18,
+   "duration": "2:08",
+   "duration_seconds": 128,
+   "creditsBrowseId": "MPTCWOb8-C6jw0M"
+  },
+  {
+   "videoId": "-nmqQlW-sMo",
+   "title": "History Has Its Eyes on You",
+   "artists": [
+    {
+     "name": "Christopher Jackson",
+     "id": "UCZo2dWJt1fVhIj6liXaol7g"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "29M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 19,
+   "duration": "1:38",
+   "duration_seconds": 98,
+   "creditsBrowseId": "MPTC-nmqQlW-sMo"
+  },
+  {
+   "videoId": "41qJIfzaqlM",
+   "title": "Yorktown (The World Turned Upside Down)",
+   "artists": [
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "46M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 20,
+   "duration": "4:03",
+   "duration_seconds": 243,
+   "creditsBrowseId": "MPTCWQt1RRW_xv0"
+  },
+  {
+   "videoId": "jKw6n0PnTMY",
+   "title": "What Comes Next?",
+   "artists": [
+    {
+     "name": "Jonathan Groff",
+     "id": "UC5erOKcUMZJB0DFaIhs-yzA"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "24M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 21,
+   "duration": "1:40",
+   "duration_seconds": 100,
+   "creditsBrowseId": "MPTCjKw6n0PnTMY"
+  },
+  {
+   "videoId": "TKpJjdKcjeo",
+   "title": "Dear Theodosia",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "52M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 22,
+   "duration": "3:05",
+   "duration_seconds": 185,
+   "creditsBrowseId": "MPTCTKpJjdKcjeo"
+  },
+  {
+   "videoId": "vYbdQAeO0vo",
+   "title": "Non-Stop",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Renée Elise Goldsberry",
+     "id": "UCX-_QpjnTPOumVDGVsDGezQ"
+    },
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "135M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 23,
+   "duration": "6:26",
+   "duration_seconds": 386,
+   "creditsBrowseId": "MPTCDPgE7PNzXag"
+  },
+  {
+   "videoId": "2JNRo7OipYc",
+   "title": "What'd I Miss",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "40M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 24,
+   "duration": "3:57",
+   "duration_seconds": 237,
+   "creditsBrowseId": "MPTC2JNRo7OipYc"
+  },
+  {
+   "videoId": "TZ1drFwVT24",
+   "title": "Cabinet Battle #1",
+   "artists": [
+    {
+     "name": "Christopher Jackson",
+     "id": "UCZo2dWJt1fVhIj6liXaol7g"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "36M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 25,
+   "duration": "3:36",
+   "duration_seconds": 216,
+   "creditsBrowseId": "MPTCdSYW61XQZeo"
+  },
+  {
+   "videoId": "xAikd8ADvbc",
+   "title": "Take a Break",
+   "artists": [
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Renée Elise Goldsberry",
+     "id": "UCX-_QpjnTPOumVDGVsDGezQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "38M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 26,
+   "duration": "4:47",
+   "duration_seconds": 287,
+   "creditsBrowseId": "MPTCitKtosLoGk4"
+  },
+  {
+   "videoId": "nsoOuWxTgvU",
+   "title": "Say No to This",
+   "artists": [
+    {
+     "name": "Jasmine Cephas-Jones",
+     "id": "UCvhI4yV39YDY4Fa8BYiF16A"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Sydney James Harcourt",
+     "id": "UCbSTygeCX00-jxMtkAAvKqw"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "51M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 27,
+   "duration": "4:03",
+   "duration_seconds": 243,
+   "creditsBrowseId": "MPTC7sB8ITujc3w"
+  },
+  {
+   "videoId": "WySzEXKUSZw",
+   "title": "The Room Where It Happens",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "71M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 28,
+   "duration": "5:19",
+   "duration_seconds": 319,
+   "creditsBrowseId": "MPTCWySzEXKUSZw"
+  },
+  {
+   "videoId": "9cATAAgy7Zc",
+   "title": "Schuyler Defeated",
+   "artists": [
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "11M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 29,
+   "duration": "1:04",
+   "duration_seconds": 64,
+   "creditsBrowseId": "MPTC9cATAAgy7Zc"
+  },
+  {
+   "videoId": "BpwBuOQuHTU",
+   "title": "Cabinet Battle #2",
+   "artists": [
+    {
+     "name": "Christopher Jackson",
+     "id": "UCZo2dWJt1fVhIj6liXaol7g"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "21M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 30,
+   "duration": "2:23",
+   "duration_seconds": 143,
+   "creditsBrowseId": "MPTC_jWVKYjy7E8"
+  },
+  {
+   "videoId": "ok03QOm5EUs",
+   "title": "Washington on Your Side",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "27M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 31,
+   "duration": "3:02",
+   "duration_seconds": 182,
+   "creditsBrowseId": "MPTC9014vq1lqXM"
+  },
+  {
+   "videoId": "ntss4E8FCxk",
+   "title": "One Last Time",
+   "artists": [
+    {
+     "name": "Christopher Jackson",
+     "id": "UCZo2dWJt1fVhIj6liXaol7g"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "30M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 32,
+   "duration": "4:57",
+   "duration_seconds": 297,
+   "creditsBrowseId": "MPTCpEqnXNsAFL8"
+  },
+  {
+   "videoId": "kkG-KT_Comw",
+   "title": "I Know Him",
+   "artists": [
+    {
+     "name": "Jonathan Groff",
+     "id": "UC5erOKcUMZJB0DFaIhs-yzA"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "20M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 33,
+   "duration": "1:38",
+   "duration_seconds": 98,
+   "creditsBrowseId": "MPTCkkG-KT_Comw"
+  },
+  {
+   "videoId": "PouTf9gYZMw",
+   "title": "The Adams Administration",
+   "artists": [
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "10M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 34,
+   "duration": "0:55",
+   "duration_seconds": 55,
+   "creditsBrowseId": "MPTCPouTf9gYZMw"
+  },
+  {
+   "videoId": "tBj2GL_12R4",
+   "title": "We Know",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "28M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 35,
+   "duration": "2:23",
+   "duration_seconds": 143,
+   "creditsBrowseId": "MPTCtBj2GL_12R4"
+  },
+  {
+   "videoId": "ZDrIMv-irD8",
+   "title": "Hurricane",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "16M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 36,
+   "duration": "2:24",
+   "duration_seconds": 144,
+   "creditsBrowseId": "MPTC7ZfzuJ8oVpE"
+  },
+  {
+   "videoId": "0h2I8Dlu3_U",
+   "title": "The Reynolds Pamphlet",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "32M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 37,
+   "duration": "2:09",
+   "duration_seconds": 129,
+   "creditsBrowseId": "MPTC0h2I8Dlu3_U"
+  },
+  {
+   "videoId": "a0k0FJrY4a8",
+   "title": "Burn",
+   "artists": [
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "37M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 38,
+   "duration": "3:46",
+   "duration_seconds": 226,
+   "creditsBrowseId": "MPTCa0k0FJrY4a8"
+  },
+  {
+   "videoId": "cHxNyOMTnzY",
+   "title": "Blow Us All Away",
+   "artists": [
+    {
+     "name": "Ariana DeBose",
+     "id": "UCq5MCauKlX-Fse7-E0JwENg"
+    },
+    {
+     "name": "Sasha Hutchings",
+     "id": "UChm0cxn_E0ZjS7GFbngJm9A"
+    },
+    {
+     "name": "Ephraim Sykes",
+     "id": "UCxWrMtldLZ9JgvFjMLQmflA"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "19M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 39,
+   "duration": "2:54",
+   "duration_seconds": 174,
+   "creditsBrowseId": "MPTCyxG37MyQfoc"
+  },
+  {
+   "videoId": "thFXSNSO9xQ",
+   "title": "Stay Alive (Reprise)",
+   "artists": [
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "21M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 40,
+   "duration": "1:52",
+   "duration_seconds": 112,
+   "creditsBrowseId": "MPTCthFXSNSO9xQ"
+  },
+  {
+   "videoId": "412CiL83Ss0",
+   "title": "It's Quiet Uptown",
+   "artists": [
+    {
+     "name": "Renée Elise Goldsberry",
+     "id": "UCX-_QpjnTPOumVDGVsDGezQ"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "37M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 41,
+   "duration": "4:31",
+   "duration_seconds": 271,
+   "creditsBrowseId": "MPTCbMAoOGnw9qQ"
+  },
+  {
+   "videoId": "wdhAUHMm5-0",
+   "title": "The Election of 1800",
+   "artists": [
+    {
+     "name": "Daveed Diggs",
+     "id": "UCy_n5gwL_3lZKvlvDe-lltg"
+    },
+    {
+     "name": "Okieriete Onaodowan",
+     "id": "UCOfB8IvcuGaUlBSHY-lI7Mw"
+    },
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": true,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "29M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 42,
+   "duration": "3:58",
+   "duration_seconds": 238,
+   "creditsBrowseId": "MPTCWrfPvuNUBg8"
+  },
+  {
+   "videoId": "Rp2AaGysm_s",
+   "title": "Your Obedient Servant",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "44M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 43,
+   "duration": "2:31",
+   "duration_seconds": 151,
+   "creditsBrowseId": "MPTCYr-mO1o1uHk"
+  },
+  {
+   "videoId": "hfmvDjPa2TU",
+   "title": "Best of Wives and Best of Women",
+   "artists": [
+    {
+     "name": "Phillipa Soo",
+     "id": "UCqSs4sciYxZmc5e2DnQvjpA"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "views": "10M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 44,
+   "duration": "0:48",
+   "duration_seconds": 48,
+   "creditsBrowseId": "MPTChfmvDjPa2TU"
+  },
+  {
+   "videoId": "xcqQy4eOZvQ",
+   "title": "The World Was Wide Enough",
+   "artists": [
+    {
+     "name": "Leslie Odom Jr.",
+     "id": "UCJ7jAHUZu8e6tX21ZnF-7_A"
+    },
+    {
+     "name": "Lin-Manuel Miranda",
+     "id": "UCAFIersvPYEQzT7XPRWUj8g"
+    },
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "30M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 45,
+   "duration": "5:03",
+   "duration_seconds": 303,
+   "creditsBrowseId": "MPTCBQ1ZwqaXJaQ"
+  },
+  {
+   "videoId": "ppXigfLHZog",
+   "title": "Who Lives, Who Dies, Who Tells Your Story",
+   "artists": [
+    {
+     "name": "Original Broadway Cast of Hamilton",
+     "id": "UC34heOtZWrXdl5YqhrlMDOQ"
+    }
+   ],
+   "album": "Hamilton (Original Broadway Cast Recording)",
+   "likeStatus": "INDIFFERENT",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "thumbnails": null,
+   "isAvailable": true,
+   "isExplicit": false,
+   "videoType": "MUSIC_VIDEO_TYPE_OMV",
+   "views": "60M plays",
+   "communityVoteStatus": null,
+   "trackNumber": 46,
+   "duration": "3:38",
+   "duration_seconds": 218,
+   "creditsBrowseId": "MPTC_gnypiKNaJE"
+  }
+ ],
+ "related_recommendations": [
+  {
+   "title": "Waving Through A Window (from Dear Evan Hansen [Original Broadway Cast Recording])",
+   "artists": [
+    {
+     "id": "UCjzKb6cAdF3Z0GW6IrVgaHw",
+     "name": "Ben Platt"
+    },
+    {
+     "id": "UC5EVJlxZ58ptIEmq1PSVsGg",
+     "name": "Original Broadway Cast of Dear Evan Hansen"
+    }
+   ],
+   "browseId": "MPREb_8xrhY88gve2",
+   "audioPlaylistId": "OLAK5uy_mYSeFBBBmOG0lzjI8SnNPWkYzklmsbsnc",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/VxTvjVqryqzzUlF-SDgq9lOvDeKxQbvfwbg5Zz5106AyteIfVc6Us4ASXDwX-_KAqCeLpEEOc9ZQb151=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/VxTvjVqryqzzUlF-SDgq9lOvDeKxQbvfwbg5Zz5106AyteIfVc6Us4ASXDwX-_KAqCeLpEEOc9ZQb151=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": false,
+   "type": "Single"
+  },
+  {
+   "title": "Heathers: The Musical (World Premiere Cast Recording)",
+   "artists": [],
+   "browseId": "MPREb_JfK9Egk3CDg",
+   "audioPlaylistId": "OLAK5uy_laA16OEjn-MgZQu9swonVgiKEEVm-CwgE",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/4CbP3oXaKZE7A7xctDTKLiN93H_gEp1Hdj_kmu-3Ei3jRzLyCib6Iq7cmV1AvRsB6oUjWPcx3ZfqFZ0=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/4CbP3oXaKZE7A7xctDTKLiN93H_gEp1Hdj_kmu-3Ei3jRzLyCib6Iq7cmV1AvRsB6oUjWPcx3ZfqFZ0=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": true,
+   "type": "Album"
+  },
+  {
+   "title": "Come From Away (Original Broadway Cast Recording)",
+   "artists": [
+    {
+     "id": "UCPKkWNPTbBoBuA8HNcNAGiw",
+     "name": "‘Come From Away’ Original Broadway Cast"
+    }
+   ],
+   "browseId": "MPREb_rERAb07h8Tk",
+   "audioPlaylistId": "OLAK5uy_lTLK2JTx2IU-8ld7kLWD2jBLa6BpvM5TQ",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/0mNgVmmR4kVn-nGu97KSjXN9GfcGRbqdOU6-dFKLEHg4TXs8i4jnuyPmI7K_jgLi0GO-mjc2Di4jleI=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/0mNgVmmR4kVn-nGu97KSjXN9GfcGRbqdOU6-dFKLEHg4TXs8i4jnuyPmI7K_jgLi0GO-mjc2Di4jleI=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": true,
+   "type": "Album"
+  },
+  {
+   "title": "The Old Therebefore (Acapella) (from The Hunger Games: The Ballad of Songbirds & Snakes)",
+   "artists": [
+    {
+     "id": "UCck3cTgrBjubDSVNvi07IfA",
+     "name": "Rachel Zegler"
+    }
+   ],
+   "browseId": "MPREb_kwOhW3uzphG",
+   "audioPlaylistId": "OLAK5uy_nRLFp-QJUB-Jgc3wE37gyHZOL2l8Ek9IA",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/URnAZD1dM_THtG8emWpevBqBVIEmiq2rswC_d-pXcluKZA4JbAVfGOXsJCr6sT1eUUkZr-9kzHaSiAs=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/URnAZD1dM_THtG8emWpevBqBVIEmiq2rswC_d-pXcluKZA4JbAVfGOXsJCr6sT1eUUkZr-9kzHaSiAs=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": false,
+   "type": "Single"
+  },
+  {
+   "title": "Dead Girl Walking (feat. Andrew Russell)",
+   "artists": [
+    {
+     "id": "UClYg2Z534vQumP1iZmon6-Q",
+     "name": "Cristina Vee"
+    }
+   ],
+   "browseId": "MPREb_udi05bElzNj",
+   "audioPlaylistId": "OLAK5uy_kE1s9MEjrjEIZ7scd0P8HFITsdZxf_DJI",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/DPZEOn_-3vN4MwaGQcIUnwaWi6VEVz868AFwiiccQrNhvm6ieoQYlTJmSM2jc9hXvrof3Bvc0KJx4SWr=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/DPZEOn_-3vN4MwaGQcIUnwaWi6VEVz868AFwiiccQrNhvm6ieoQYlTJmSM2jc9hXvrof3Bvc0KJx4SWr=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": false,
+   "type": "Single"
+  },
+  {
+   "title": "Wait for Me",
+   "artists": [],
+   "browseId": "MPREb_TUuIhknflfE",
+   "audioPlaylistId": "OLAK5uy_lphC7RQmlcb3CTq-EGbOiObBY6ALvnC2A",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/JquM07bBYaFmZwhKN72Qz1yNVTtQTyuRNrWL-9eKXCZmtcSZFVlzj0dHGMLgKTw39TmhmJbKgw3UF1P8=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/JquM07bBYaFmZwhKN72Qz1yNVTtQTyuRNrWL-9eKXCZmtcSZFVlzj0dHGMLgKTw39TmhmJbKgw3UF1P8=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": false,
+   "type": "Single"
+  },
+  {
+   "title": "Hadestown (Original Broadway Cast Recording)",
+   "artists": [
+    {
+     "id": "UCu5NSquEmNHm5XiHppFlTeA",
+     "name": "Anaïs Mitchell"
+    }
+   ],
+   "browseId": "MPREb_gIabrzkEtSR",
+   "audioPlaylistId": "OLAK5uy_lm33KX5L-19O27gjy9IrZCQJEFxx00WMQ",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/TOoNhrZgRV1a61nG8JH3eqF2H6JhNvhzE0DJ5qf-jMb_A4wpp4oPx3A2Xe5hrXnrndW5uSUACCndAnBccQ=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/TOoNhrZgRV1a61nG8JH3eqF2H6JhNvhzE0DJ5qf-jMb_A4wpp4oPx3A2Xe5hrXnrndW5uSUACCndAnBccQ=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": false,
+   "type": "Album"
+  },
+  {
+   "title": "Legally Blonde The Musical (Original Broadway Cast Recording)",
+   "artists": [
+    {
+     "id": "UCrL35i99rG8SXBq0GpLzOyg",
+     "name": "Nell Benjamin"
+    },
+    {
+     "id": "UC7wrWg6rZHU4rwtYQtJBkJQ",
+     "name": "Laurence O’Keefe"
+    },
+    {
+     "id": "UCQPHXrN7A2PmXxR5rHyDfnw",
+     "name": "Annaleigh Ashford"
+    }
+   ],
+   "browseId": "MPREb_Bm2HDuHCF6p",
+   "audioPlaylistId": "OLAK5uy_nXsNGMDwKCxCOX1btRicJ4kz9LSJSVQvE",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/cvxDNr_0U3B7xhPuFSwuHzIcEJizU96xfb7IBQqpCNRzgXpMFf9Bt25m_IPU0BwfOjxUNKTOmKFCC_omeQ=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/cvxDNr_0U3B7xhPuFSwuHzIcEJizU96xfb7IBQqpCNRzgXpMFf9Bt25m_IPU0BwfOjxUNKTOmKFCC_omeQ=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": false,
+   "type": "Album"
+  },
+  {
+   "title": "Say My Name",
+   "artists": [
+    {
+     "id": "UCKFW9oy8EzWDU12LNOr9vEw",
+     "name": "Alex Brightman"
+    },
+    {
+     "id": "UC0Qn7QuJahXSFwgF_Yw2oPw",
+     "name": "Sophia Anne Caruso"
+    },
+    {
+     "id": "UCx7rIrmEy-eu4SXZCWs4yfg",
+     "name": "Kerry Butler"
+    },
+    {
+     "id": "UCexmMs9ZVjIVrHvRhN0fUaw",
+     "name": "Rob McClure"
+    }
+   ],
+   "browseId": "MPREb_iJbTdHSAnSo",
+   "audioPlaylistId": "OLAK5uy_l8v8EzDxX_ajXK-g3ZrqwO-a870DIZn24",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/ytVQNFU7_W4Ki4d3fXK-7S-siFZ_8_D9WDW-lSpbC7OJuVEA-V3-oUYYgJqsQrTPuOP5T3oTuCBZhUA2=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/ytVQNFU7_W4Ki4d3fXK-7S-siFZ_8_D9WDW-lSpbC7OJuVEA-V3-oUYYgJqsQrTPuOP5T3oTuCBZhUA2=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": false,
+   "type": "Single"
+  },
+  {
+   "title": "Moulin Rouge! The Musical (Original Broadway Cast Recording)",
+   "artists": [
+    {
+     "id": "UCw2snXl6yNZ3EXbv9MGxlBQ",
+     "name": "Original Broadway Cast of Moulin Rouge! The Musical"
+    }
+   ],
+   "browseId": "MPREb_jdlHHGWglj3",
+   "audioPlaylistId": "OLAK5uy_n60TPxBYdlpUm-c50VM_yNWfEdi1zWQms",
+   "thumbnails": [
+    {
+     "url": "https://yt3.googleusercontent.com/HUtZCDX8df733w0qC29CpvDRQPE15f_bktUrEUnjFxYURr3HSjnNX7W77wHui5fqxwcNndgUGgSSZSiM=w226-h226-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/HUtZCDX8df733w0qC29CpvDRQPE15f_bktUrEUnjFxYURr3HSjnNX7W77wHui5fqxwcNndgUGgSSZSiM=w544-h544-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "isExplicit": false,
+   "type": "Album"
+  }
+ ],
+ "duration_seconds": 8579
+}

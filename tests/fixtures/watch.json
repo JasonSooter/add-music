@@ -1,0 +1,57 @@
+{
+ "tracks": [
+  {
+   "videoId": "GsHm-GilHQw",
+   "title": "Als ich ein Baby war (Live)",
+   "length": "7:04",
+   "thumbnail": [
+    {
+     "url": "https://yt3.googleusercontent.com/QuZkA3QsPwSQ-vym43kQtRrY_Qxg_7Tx6GOF835MezZaZ7-dG9ONkCvAAmqmP9AJZ39ZM1G1P8eZuR88=w60-h60-s-l90-rj",
+     "width": 60,
+     "height": 60
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/QuZkA3QsPwSQ-vym43kQtRrY_Qxg_7Tx6GOF835MezZaZ7-dG9ONkCvAAmqmP9AJZ39ZM1G1P8eZuR88=w120-h120-s-l90-rj",
+     "width": 120,
+     "height": 120
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/QuZkA3QsPwSQ-vym43kQtRrY_Qxg_7Tx6GOF835MezZaZ7-dG9ONkCvAAmqmP9AJZ39ZM1G1P8eZuR88=w180-h180-s-l90-rj",
+     "width": 180,
+     "height": 180
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/QuZkA3QsPwSQ-vym43kQtRrY_Qxg_7Tx6GOF835MezZaZ7-dG9ONkCvAAmqmP9AJZ39ZM1G1P8eZuR88=w226-h226-s-l90-rj",
+     "width": 226,
+     "height": 226
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/QuZkA3QsPwSQ-vym43kQtRrY_Qxg_7Tx6GOF835MezZaZ7-dG9ONkCvAAmqmP9AJZ39ZM1G1P8eZuR88=w302-h302-s-l90-rj",
+     "width": 302,
+     "height": 302
+    },
+    {
+     "url": "https://yt3.googleusercontent.com/QuZkA3QsPwSQ-vym43kQtRrY_Qxg_7Tx6GOF835MezZaZ7-dG9ONkCvAAmqmP9AJZ39ZM1G1P8eZuR88=w544-h544-s-l90-rj",
+     "width": 544,
+     "height": 544
+    }
+   ],
+   "likeStatus": null,
+   "videoType": "MUSIC_VIDEO_TYPE_ATV",
+   "inLibrary": false,
+   "pinnedToListenAgain": false,
+   "listenAgainFeedbackTokens": null,
+   "artists": [
+    {
+     "name": "Rolf Zuckowski und seine Freunde",
+     "id": "UC56hLMPuEsERdmTBbR_JGHA"
+    }
+   ],
+   "album": {
+    "name": "...und ganz doll live!",
+    "id": "MPREb_Jzs014TgQXl"
+   },
+   "year": "2003"
+  }
+ ]
+}

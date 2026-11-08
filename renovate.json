@@ -1,0 +1,41 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "helpers:pinGitHubActionDigests", "schedule:weekly"],
+  "timezone": "Europe/Berlin",
+  "semanticCommits": "enabled",
+  "labels": ["dependencies"],
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  },
+  "packageRules": [
+    {
+      "description": "One weekly PR for routine updates. Majors stay separate: they are the ones that break.",
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "pinDigest"],
+      "groupName": "weekly dependencies"
+    },
+    {
+      "description": "Patch and digest updates merge themselves once CI is green.",
+      "matchUpdateTypes": ["patch", "digest", "pin", "pinDigest"],
+      "automerge": true
+    },
+    {
+      "description": "Pin Dockerfile images by digest, so a rebuild cannot pull different layers while git stays unchanged.",
+      "matchManagers": ["dockerfile"],
+      "pinDigests": true
+    },
+    {
+      "description": "yt-dlp and ytmusicapi track YouTube's changes: an old version stops downloading or searching. Update them as soon as a release lands, not on the weekly schedule, and merge on green.",
+      "matchPackageNames": ["yt-dlp", "yt-dlp-ejs", "ytmusicapi"],
+      "groupName": "youtube clients",
+      "schedule": ["at any time"],
+      "automerge": true
+    },
+    {
+      "description": "Only patch releases and digest updates of Python 3.12.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "allowedVersions": "/^3\\.12(\\.\\d+)?-slim$/"
+    }
+  ]
+}

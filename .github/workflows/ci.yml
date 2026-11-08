@@ -1,0 +1,80 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+      # The tag tests write real M4A/Opus files.
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      # --locked fails if uv.lock is out of date with pyproject.toml.
+      - run: uv sync --locked --all-groups
+      - run: uv run pytest
+
+  image:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - if: github.event_name != 'pull_request'
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
+        with:
+          images: ghcr.io/jasonsooter/add-music
+          tags: |
+            type=raw,value=main,enable={{is_default_branch}}
+            type=sha,prefix=sha-
+      # Build into the local daemon first and boot it: a missing deno or a
+      # broken yt-dlp install fails here, before anything is published.
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          platforms: linux/amd64
+          load: true
+          tags: add-music:ci
+          cache-from: type=gha
+      - name: Smoke-test the image
+        run: |
+          docker run --rm --entrypoint sh add-music:ci -c 'deno --version && yt-dlp --version && ffmpeg -version | head -1'
+          mkdir -p /tmp/music/Someone && sudo chown -R 1000:1000 /tmp/music
+          docker run -d --name smoke -e ADD_MUSIC_PEOPLE=Ellie -v /tmp/music:/music add-music:ci
+          for i in $(seq 1 30); do
+            [ "$(docker inspect -f '{{.State.Health.Status}}' smoke)" = healthy ] && break
+            sleep 2
+          done
+          docker exec smoke python -c "import urllib.request; print(urllib.request.urlopen('http://127.0.0.1:8000/').read()[:200])"
+          [ "$(docker inspect -f '{{.State.Health.Status}}' smoke)" = healthy ] || { docker logs smoke; exit 1; }
+      # amd64 only: the one place this runs is the mediabox.
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          platforms: linux/amd64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: GIT_REVISION=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

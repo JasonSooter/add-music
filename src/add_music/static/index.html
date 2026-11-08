@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add Music</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+<style>
+  :root {
+    --bg: #f6f3ff; --card: #ffffff; --ink: #1d1a2b; --muted: #6b6680;
+    --accent: #6c4cf1; --accent-ink: #ffffff; --line: #e4def7;
+    --ok: #1f9d55; --bad: #d64545; --shadow: 0 2px 10px rgb(60 40 140 / .08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15131d; --card: #211e2c; --ink: #f1eefa; --muted: #a39db8;
+      --accent: #9b84ff; --accent-ink: #15131d; --line: #34304a;
+      --ok: #4cc685; --bad: #ef7676; --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 17px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  button, input { font: inherit; color: inherit; }
+  main { max-width: 900px; margin: 0 auto; padding: 16px 16px 120px; }
+  header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  header h1 { font-size: 1.6rem; margin: 0; flex: 1; }
+  .who { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+
+  .searchbox { position: relative; }
+  .searchbox input { width: 100%; padding: 16px 18px; font-size: 1.15rem; border-radius: 16px;
+                     border: 2px solid var(--line); background: var(--card); outline: none; }
+  .searchbox input:focus { border-color: var(--accent); }
+  .suggest { position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 4px); list-style: none; margin: 0; padding: 6px;
+             background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+  .suggest li { padding: 10px 12px; border-radius: 10px; cursor: pointer; }
+  .suggest li[aria-selected="true"], .suggest li:hover { background: var(--bg); }
+
+  .tabs { display: flex; gap: 8px; margin: 16px 0 10px; flex-wrap: wrap; }
+  .tabs button { border: 0; background: var(--card); padding: 8px 16px; border-radius: 999px; cursor: pointer; box-shadow: var(--shadow); }
+  .tabs button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+  .list { display: flex; flex-direction: column; gap: 8px; }
+  .card { background: var(--card); border-radius: 16px; padding: 10px; box-shadow: var(--shadow);
+          display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; background: var(--line); }
+  .card.artist img { border-radius: 50%; }
+  .card .t { font-weight: 650; overflow-wrap: anywhere; }
+  .card .s { color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
+  .card.clickable { cursor: pointer; }
+  .row { background: var(--card); border-radius: 14px; padding: 8px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow); }
+  .row img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; flex: none; background: var(--line); }
+  .row .num { width: 2ch; text-align: right; color: var(--muted); flex: none; }
+  .row .grow { flex: 1; min-width: 0; }
+  .row .t { font-weight: 600; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere; }
+  .row .s { color: var(--muted); font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .add { border: 0; border-radius: 999px; padding: 8px 16px; background: var(--accent); color: var(--accent-ink);
+         font-weight: 650; cursor: pointer; flex: none; }
+  .add:disabled { opacity: .55; cursor: default; }
+  .add.done { background: var(--ok); }
+  .back { border: 0; background: none; color: var(--accent); cursor: pointer; padding: 6px 0; font-weight: 600; }
+  .hero { display: flex; gap: 16px; align-items: center; margin: 6px 0 16px; flex-wrap: wrap; }
+  .hero img { width: 140px; height: 140px; border-radius: 16px; object-fit: cover; }
+  .hero.artist img { border-radius: 50%; }
+  .hero h2 { margin: 0 0 4px; font-size: 1.4rem; }
+  .hero .s { color: var(--muted); margin-bottom: 10px; }
+  h3 { margin: 22px 0 10px; }
+  .msg { color: var(--muted); padding: 24px 4px; text-align: center; }
+
+  .tray { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line);
+          box-shadow: 0 -4px 16px rgb(0 0 0 / .08); max-height: 55vh; overflow: auto; }
+  .tray summary { padding: 14px 16px; cursor: pointer; font-weight: 650; max-width: 900px; margin: 0 auto; }
+  .tray .list { padding: 0 16px 16px; max-width: 900px; margin: 0 auto; }
+  .status { font-size: .85rem; flex: none; padding: 4px 10px; border-radius: 999px; background: var(--bg); }
+  .status.done { color: var(--ok); } .status.failed { color: var(--bad); }
+
+  dialog { border: 0; border-radius: 20px; padding: 24px; background: var(--card); color: var(--ink); max-width: 420px; width: calc(100% - 32px); }
+  dialog::backdrop { background: rgb(0 0 0 / .45); }
+  dialog h2 { margin-top: 0; }
+  .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+  .people button { padding: 18px 8px; border-radius: 16px; border: 2px solid var(--line); background: var(--bg);
+                   font-size: 1.1rem; font-weight: 650; cursor: pointer; }
+  .people button:hover { border-color: var(--accent); }
+  .toast { position: fixed; left: 50%; top: 16px; transform: translateX(-50%); background: var(--ink); color: var(--bg);
+           padding: 10px 18px; border-radius: 999px; z-index: 10; max-width: calc(100% - 32px); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>🎵 Add Music</h1>
+    <button class="who" id="who" type="button">Who are you?</button>
+  </header>
+
+  <form class="searchbox" id="form" role="search" autocomplete="off">
+    <input id="q" type="search" placeholder="Search for a song, album or singer…" aria-label="Search"
+           aria-autocomplete="list" aria-controls="suggest" enterkeyhint="search">
+    <ul class="suggest" id="suggest" role="listbox" hidden></ul>
+  </form>
+
+  <div id="view"><p class="msg">Type the name of a song, an album or a singer.</p></div>
+</main>
+
+<details class="tray" id="tray">
+  <summary id="trayTitle">My music</summary>
+  <div class="list" id="jobs"></div>
+</details>
+
+<dialog id="pick">
+  <h2>Who's adding music?</h2>
+  <div class="people" id="people"></div>
+</dialog>
+
+<script>
+"use strict";
+// All URLs are relative: the page is served under /add-music/.
+const $ = (id) => document.getElementById(id);
+const api = async (path, opts) => {
+  const r = await fetch(path, opts);
+  const body = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(body.detail || `Something went wrong (${r.status})`);
+  return body;
+};
+// Build DOM nodes without innerHTML: every string here came from YouTube.
+const el = (tag, props = {}, ...kids) => {
+  const n = Object.assign(document.createElement(tag), props);
+  for (const k of kids.flat()) if (k != null) n.append(k);
+  return n;
+};
+const img = (src, alt = "") => el("img", { src: src || "", alt, loading: "lazy", referrerPolicy: "no-referrer" });
+const toast = (text) => {
+  const t = el("div", { className: "toast", textContent: text, role: "status" });
+  document.body.append(t); setTimeout(() => t.remove(), 3500);
+};
+
+let who = null;
+try { who = localStorage.getItem("add-music-who"); } catch {}
+
+async function pickWho() {
+  const people = await api("api/people");
+  $("people").replaceChildren(...people.map((p) =>
+    el("button", { type: "button", textContent: p, onclick: () => {
+      who = p; try { localStorage.setItem("add-music-who", p); } catch {}
+      $("pick").close(); showWho(); loadJobs();
+    } })));
+  $("pick").showModal();
+}
+function showWho() { $("who").textContent = who ? `👋 ${who}` : "Who are you?"; }
+$("who").onclick = pickWho;
+
+// ---- adding ------------------------------------------------------------
+async function add(btn, body) {
+  if (!who) return pickWho();
+  btn.disabled = true; btn.textContent = "Adding…";
+  try {
+    await api("api/requests", { method: "POST", headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ ...body, who }) });
+    btn.textContent = "✓ Added"; btn.classList.add("done");
+    toast("On its way! It will show up in Jellyfin soon.");
+    $("tray").open = true; loadJobs();
+  } catch (e) {
+    btn.disabled = false; btn.textContent = "+ Add"; toast(e.message);
+  }
+}
+const addBtn = (label, body) => {
+  const b = el("button", { className: "add", type: "button", textContent: label });
+  b.onclick = (ev) => { ev.stopPropagation(); add(b, body); };
+  return b;
+};
+
+// ---- views -------------------------------------------------------------
+const view = (...nodes) => { $("view").replaceChildren(...nodes); window.scrollTo(0, 0); };
+const msg = (text) => el("p", { className: "msg", textContent: text });
+let lastResults = null, tab = "songs";
+
+const songRow = (s) => el("div", { className: "row" },
+  img(s.thumb),
+  el("div", { className: "grow" },
+    el("div", { className: "t", textContent: s.title }),
+    el("div", { className: "s", textContent: [s.artists, s.album?.name].filter(Boolean).join(" · ") })),
+  addBtn("+ Add", { kind: "song", id: s.id, album_id: s.album?.id || null }));
+
+const albumCard = (a) => {
+  const c = el("div", { className: "card clickable" }, img(a.thumb),
+    el("div", { className: "t", textContent: a.title }),
+    el("div", { className: "s", textContent: [a.artists, a.year, a.kind !== "Album" ? a.kind : null].filter(Boolean).join(" · ") }));
+  c.onclick = () => openAlbum(a.id);
+  return c;
+};
+const artistCard = (a) => {
+  const c = el("div", { className: "card artist clickable" }, img(a.thumb), el("div", { className: "t", textContent: a.title }));
+  c.onclick = () => openArtist(a.id);
+  return c;
+};
+
+function showResults() {
+  const r = lastResults;
+  const tabs = el("div", { className: "tabs" }, [["songs", "🎵 Songs"], ["albums", "💿 Albums"], ["artists", "🎤 Singers"]]
+    .map(([k, label]) => {
+      const b = el("button", { type: "button", textContent: `${label} (${r[k].length})` });
+      b.setAttribute("aria-pressed", String(tab === k));
+      b.onclick = () => { tab = k; showResults(); };
+      return b;
+    }));
+  let body;
+  if (!r[tab].length) body = msg("Nothing here — try another tab or a different search.");
+  else if (tab === "songs") body = el("div", { className: "list" }, r.songs.map(songRow));
+  else if (tab === "albums") body = el("div", { className: "grid" }, r.albums.map(albumCard));
+  else body = el("div", { className: "grid" }, r.artists.map(artistCard));
+  view(tabs, body);
+}
+
+async function search(q) {
+  hideSuggest();
+  if (!q.trim()) return;
+  view(msg("Searching…"));
+  try {
+    lastResults = await api(`api/search?q=${encodeURIComponent(q)}`);
+    const counts = ["songs", "albums", "artists"].map((k) => lastResults[k].length);
+    if (!lastResults[tab].length) tab = ["songs", "albums", "artists"][counts.findIndex((n) => n)] || "songs";
+    history.replaceState(null, "", `#q=${encodeURIComponent(q)}`);
+    showResults();
+  } catch (e) { view(msg(e.message)); }
+}
+
+const backBtn = () => el("button", { className: "back", type: "button", textContent: "← Back",
+  onclick: () => lastResults ? showResults() : view(msg("Type the name of a song, an album or a singer.")) });
+
+async function openAlbum(id) {
+  view(msg("Loading album…"));
+  try {
+    const a = await api(`api/album/${encodeURIComponent(id)}`);
+    view(backBtn(),
+      el("div", { className: "hero" }, img(a.thumb),
+        el("div", {},
+          el("h2", { textContent: a.title }),
+          el("div", { className: "s", textContent: [a.artists, a.year, `${a.tracks.length} songs`].filter(Boolean).join(" · ") }),
+          addBtn("+ Add whole album", { kind: "album", id: a.id }))),
+      el("div", { className: "list" }, a.tracks.map((t) => el("div", { className: "row" },
+        el("span", { className: "num", textContent: t.number }),
+        el("div", { className: "grow" },
+          el("div", { className: "t", textContent: t.title }),
+          el("div", { className: "s", textContent: [t.artists, t.duration].filter(Boolean).join(" · ") })),
+        addBtn("+ Add", { kind: "song", id: t.id, album_id: a.id })))));
+  } catch (e) { view(backBtn(), msg(e.message)); }
+}
+
+async function openArtist(id) {
+  view(msg("Loading…"));
+  try {
+    const a = await api(`api/artist/${encodeURIComponent(id)}`);
+    view(backBtn(),
+      el("div", { className: "hero artist" }, img(a.thumb), el("div", {}, el("h2", { textContent: a.title }))),
+      a.albums.length ? [el("h3", { textContent: "Albums" }), el("div", { className: "grid" }, a.albums.map(albumCard))] : null,
+      a.singles.length ? [el("h3", { textContent: "Singles" }), el("div", { className: "grid" }, a.singles.map(albumCard))] : null,
+      !a.albums.length && !a.singles.length ? msg("No albums found for this singer.") : null);
+  } catch (e) { view(backBtn(), msg(e.message)); }
+}
+
+// ---- autocomplete -------------------------------------------------------
+let suggestTimer = null, suggestSeq = 0, active = -1;
+const sug = $("suggest");
+function hideSuggest() { sug.hidden = true; active = -1; }
+function renderSuggest(items) {
+  active = -1;
+  sug.replaceChildren(...items.map((s, i) => {
+    const li = el("li", { role: "option", textContent: s, id: `sug-${i}` });
+    li.onmousedown = (ev) => { ev.preventDefault(); $("q").value = s; search(s); };
+    return li;
+  }));
+  sug.hidden = !items.length;
+}
+function moveActive(d) {
+  const items = [...sug.children];
+  if (!items.length || sug.hidden) return;
+  active = (active + d + items.length) % items.length;
+  items.forEach((li, i) => li.setAttribute("aria-selected", String(i === active)));
+  $("q").value = items[active].textContent;
+}
+$("q").addEventListener("input", () => {
+  clearTimeout(suggestTimer);
+  const q = $("q").value;
+  if (q.trim().length < 2) return hideSuggest();
+  suggestTimer = setTimeout(async () => {
+    const seq = ++suggestSeq;
+    try {
+      const items = await api(`api/suggest?q=${encodeURIComponent(q)}`);
+      if (seq === suggestSeq && $("q").value === q) renderSuggest(items);
+    } catch { hideSuggest(); }
+  }, 250);
+});
+$("q").addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown") { e.preventDefault(); moveActive(1); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); moveActive(-1); }
+  else if (e.key === "Escape") hideSuggest();
+});
+$("q").addEventListener("blur", () => setTimeout(hideSuggest, 100));
+$("form").addEventListener("submit", (e) => { e.preventDefault(); clearTimeout(suggestTimer); suggestSeq++; search($("q").value); $("q").blur(); });
+
+// ---- my music tray -----------------------------------------------------
+const LABEL = { queued: "⏳ Waiting", working: "⬇️ Downloading", done: "✓ In Jellyfin", failed: "⚠️ Didn't work" };
+let jobsTimer = null;
+async function loadJobs() {
+  clearTimeout(jobsTimer);
+  if (!who) return;
+  try {
+    const jobs = await api(`api/requests?who=${encodeURIComponent(who)}`);
+    const busy = jobs.filter((j) => j.status === "queued" || j.status === "working").length;
+    $("trayTitle").textContent = `My music${busy ? ` — ${busy} on the way` : ""}`;
+    $("jobs").replaceChildren(...(jobs.length ? jobs.map((j) => el("div", { className: "row" },
+      img(j.thumb),
+      el("div", { className: "grow" },
+        el("div", { className: "t", textContent: j.title }),
+        el("div", { className: "s", textContent: j.detail || j.artist })),
+      el("span", { className: `status ${j.status}`, textContent: LABEL[j.status] || j.status })))
+      : [msg("Nothing added yet.")]));
+    jobsTimer = setTimeout(loadJobs, busy ? 3000 : 20000);
+  } catch { jobsTimer = setTimeout(loadJobs, 10000); }
+}
+
+// ---- start -------------------------------------------------------------
+showWho();
+if (!who) pickWho(); else loadJobs();
+const initial = new URLSearchParams(location.hash.slice(1)).get("q");
+if (initial) { $("q").value = initial; search(initial); }
+</script>
+</body>
+</html>
