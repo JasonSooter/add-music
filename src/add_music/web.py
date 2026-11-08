@@ -84,7 +84,7 @@ def create_app(catalog: Catalog, store: Store, worker: Worker | None, people: di
 
     def song_state(idx, refs, plans, s) -> str | None:
         album = (s.get("album") or {}).get("name")
-        if src := idx.track_source(s["title"], album):
+        if src := idx.track_source(s["title"], album, s.get("artists") or ""):
             return src
         if s["id"] in refs or (s.get("album") or {}).get("id") in refs:
             return "queued"
@@ -136,7 +136,7 @@ def create_app(catalog: Catalog, store: Store, worker: Worker | None, people: di
             if src == "shared":
                 raise HTTPException(409, "That's already in Music for everyone!")
         else:
-            src = idx.track_source(plan.tracks[0].title, plan.album)
+            src = idx.track_source(plan.tracks[0].title, plan.album, f"{plan.tracks[0].artist}, {plan.album_artist}")
             if src in ("mine", "shared"):
                 raise HTTPException(409, "That's already in your library!" if src == "mine" else "That's already in Music for everyone!")
 
@@ -229,7 +229,8 @@ def create_app(catalog: Catalog, store: Store, worker: Worker | None, people: di
             if j["status"] == "done":
                 plan = store.plan_of(j["id"])
                 j["in_jellyfin"] = (idx.album_source(plan.album, plan.album_artist) == "mine" if plan.kind == "album"
-                                    else idx.track_source(plan.tracks[0].title, plan.album) == "mine")
+                                    else idx.track_source(plan.tracks[0].title, plan.album,
+                                                          f"{plan.tracks[0].artist}, {plan.album_artist}") == "mine")
         return jobs
 
     @app.get("/api/queue")

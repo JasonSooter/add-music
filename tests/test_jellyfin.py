@@ -8,7 +8,8 @@ ALBUMS = [
 ]
 TRACKS = [
     {"Name": "Die Jahresuhr", "Album": "Die Jahresuhr", "Path": "/media/music-people/Ellie/x.m4a"},
-    {"Name": "My Shot", "Album": "Hamilton", "Path": "/media/music/x.mp3"},
+    {"Name": "My Shot", "Album": "Hamilton", "AlbumArtist": "Various Artists", "Path": "/media/music/x.mp3"},
+    {"Name": "Intro", "Album": "Live", "AlbumArtist": "The xx", "Path": "/media/music/intro.mp3"},
     {"Name": "Besuch auf dem Bauernhof", "Album": "Sommerkinder", "Path": "/media/music-people/Mac/x.m4a"},
 ]
 
@@ -56,3 +57,9 @@ def test_edition_labels_are_ignored():
 def test_live_and_instrumental_versions_are_different_recordings():
     assert base_title("Hey Jude (Live Version)") == "heyjudeliveversion"
     assert base_title("My Shot (Instrumental Version)") == "myshotinstrumentalversion"
+
+
+def test_track_match_needs_the_artist():
+    idx = jellyfin_with(ALBUMS, TRACKS).index("ellie.sooter", "Ellie")
+    assert idx.track_source("Intro", "Live", "The xx") == "shared"
+    assert idx.track_source("Intro", "Live", "Someone Else") is None
