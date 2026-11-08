@@ -53,20 +53,18 @@ class LibraryIndex:
 
     albums: list[dict] = field(default_factory=list)
     _by_title: dict[str, list[tuple[set[str], dict]]] = field(default_factory=dict)
-    _tracks: dict[tuple[str, str], str] = field(default_factory=dict)
+    _tracks: dict[tuple[str, str], list[tuple[set[str], str]]] = field(default_factory=dict)
 
     def add_album(self, entry: dict, artists: set[str]) -> None:
         self.albums.append(entry)
         for key in {norm(entry["title"]), base_title(entry["title"])}:
             self._by_title.setdefault(key, []).append((artists, entry))
 
-    def add_track(self, album: str, title: str, source: str) -> None:
+    def add_track(self, album: str, title: str, source: str, artists: set[str] | None = None) -> None:
         if source == "other":
             return
         for key in {(norm(album), norm(title)), (base_title(album), base_title(title))}:
-            # "mine" wins over "shared" so the badge says where the kid will find it.
-            if self._tracks.get(key) != "mine":
-                self._tracks[key] = source
+            self._tracks.setdefault(key, []).append((artists or set(), source))
 
     def album_source(self, title: str, artists: str) -> str | None:
         """'mine' or 'shared' when an album with this title by one of these
@@ -83,10 +81,21 @@ class LibraryIndex:
                 found = entry["source"]
         return found
 
-    def track_source(self, title: str, album: str | None) -> str | None:
+    def track_source(self, title: str, album: str | None, artists: str = "") -> str | None:
+        """'mine' or 'shared' when this song from this album, by one of these
+        artists, is already visible. Titles alone are not enough: "Intro" on
+        two different artists' "Live" albums are different recordings."""
         if not album:
             return None
-        return self._tracks.get((norm(album), norm(title))) or self._tracks.get((base_title(album), base_title(title)))
+        wanted = artist_keys(*artists.split(",")) if artists else set()
+        found = None
+        for key in ((norm(album), norm(title)), (base_title(album), base_title(title))):
+            for keys, source in self._tracks.get(key, []):
+                if not wanted or not keys or keys & wanted or VARIOUS in keys:
+                    if source == "mine":
+                        return "mine"
+                    found = source
+        return found
 
 
 class Jellyfin:
@@ -158,7 +167,8 @@ class Jellyfin:
             )
         tracks = self._get("/Items", userId=uid, IncludeItemTypes="Audio", Recursive="true", Fields="Path").json()["Items"]
         for t in tracks:
-            idx.add_track(t.get("Album") or "", t.get("Name") or "", self._source(t.get("Path"), folder))
+            idx.add_track(t.get("Album") or "", t.get("Name") or "", self._source(t.get("Path"), folder),
+                          artist_keys(t.get("AlbumArtist"), *(t.get("Artists") or [])))
         with self._lock:
             self._cache[username] = (now, idx)
         return idx
