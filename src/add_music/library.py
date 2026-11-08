@@ -104,24 +104,24 @@ def tag(path: Path, *, title: str, artist: str, album_artist: str, album: str,
         raise ValueError(f"don't know how to tag {path.name}")
 
 
-def library_ok(library: Path) -> str | None:
-    """None if the library looks writable and mounted, else why not.
+def library_ok(path: Path, *, need_write: bool = True, need_entries: bool = True) -> str | None:
+    """None if the folder looks mounted (and writable, if asked), else why not.
 
-    The library lives on a USB drive that has dropped before: either
-    unmounted (the folder is then empty) or stale-mounted (listing it raises
-    EIO). Writing into an unmounted folder would hide the files under the
-    mount when the drive comes back, so refuse rather than write."""
+    The music lives on a USB drive that has dropped before: either unmounted
+    (the folder is then empty) or stale-mounted (listing it raises EIO).
+    Writing into an unmounted folder would hide the files under the mount
+    when the drive comes back, so refuse rather than write."""
     try:
-        if not library.is_dir():
-            return f"{library} is missing"
-        # Dot-entries don't count: the staging folder lives here too, and it
-        # would make an unmounted, otherwise-empty folder look populated.
-        if not any(not p.name.startswith(".") for p in library.iterdir()):
-            return f"{library} is empty -- is the media drive mounted?"
-        if not os.access(library, os.W_OK):
-            return f"{library} is not writable"
+        if not path.is_dir():
+            return f"{path} is missing -- is the media drive mounted?"
+        # Dot-entries don't count: staging lives there, and it would make an
+        # unmounted, otherwise-empty folder look populated.
+        if need_entries and not any(not p.name.startswith(".") for p in path.iterdir()):
+            return f"{path} is empty -- is the media drive mounted?"
+        if need_write and not os.access(path, os.W_OK):
+            return f"{path} is not writable"
     except OSError as e:
-        return f"{library} is unreadable ({e.strerror}) -- the media drive may have dropped"
+        return f"{path} is unreadable ({e.strerror}) -- the media drive may have dropped"
     return None
 
 

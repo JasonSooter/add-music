@@ -15,7 +15,8 @@ RUN apt-get update \
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     ADD_MUSIC_STATE=/state \
-    ADD_MUSIC_LIBRARY=/music \
+    ADD_MUSIC_SHARED=/music \
+    ADD_MUSIC_PEOPLE_DIR=/people \
     ADD_MUSIC_PORT=8000 \
     HOME=/state
 
@@ -29,7 +30,7 @@ RUN uv export --frozen --no-dev --no-emit-project -o /tmp/requirements.txt \
  && uv pip install --system --no-cache --no-deps . \
  && rm /tmp/requirements.txt
 
-RUN mkdir -p /state /music && chown 1000:1000 /state /music
+RUN mkdir -p /state /music /people && chown 1000:1000 /state /music /people
 USER 1000:1000
 EXPOSE 8000
 

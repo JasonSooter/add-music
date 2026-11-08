@@ -8,8 +8,10 @@ from conftest import make_audio, make_jpeg
 
 
 def make_worker(tmp_path, refresh=lambda: None):
-    lib = tmp_path / "music"
-    (lib / "Existing Artist").mkdir(parents=True)
+    shared = tmp_path / "music"
+    (shared / "Existing Artist").mkdir(parents=True)
+    people = tmp_path / "people"
+    people.mkdir()
     calls = []
     source = make_audio(tmp_path / "src.m4a", "m4a")
 
@@ -19,8 +21,8 @@ def make_worker(tmp_path, refresh=lambda: None):
         return shutil.copy(source, dest / f"{stem}.m4a") and (dest / f"{stem}.m4a")
 
     store = Store(tmp_path / "state" / "jobs.db")
-    w = Worker(store, lib, lib / ".add-music-staging", download, lambda url: make_jpeg(1280, 720), refresh)
-    return w, store, lib, calls
+    w = Worker(store, people, shared, download, lambda url: make_jpeg(1280, 720), refresh)
+    return w, store, people / "Ellie", calls
 
 
 def test_album_job_end_to_end(tmp_path, yt):
@@ -39,7 +41,7 @@ def test_album_job_end_to_end(tmp_path, yt):
     m = File(album / files[0])
     assert m["aART"] == ["Rolf Zuckowski"] and m["trkn"] == [(1, 26)]
     assert refreshed == [1]
-    assert list((lib / ".add-music-staging").iterdir()) == []
+    assert list((lib.parent / ".add-music-staging").iterdir()) == []
     assert w.run_once() is False
 
 
@@ -50,23 +52,27 @@ def test_second_request_skips_existing_tracks(tmp_path, yt):
     store.add("Ellie", "album", "x", "t", "a", "", plan)
     w.run_once()
     plan.tracks = Catalog(yt).resolve("album", "MPREb_EGhFrDL8Sd9").tracks[:3]
-    store.add("Mac", "album", "x", "t", "a", "", plan)
+    store.add("Ellie", "album", "x", "t", "a", "", plan)
     w.run_once()
     assert len(calls) == 3
-    assert store.recent("Mac")[0]["detail"] == "Added 1 song, 2 already there"
+    assert store.recent("Ellie")[0]["detail"] == "Added 1 song, 2 already there"
 
 
-def test_duplicate_in_flight_request_is_one_job(tmp_path, yt):
-    _, store, _, _ = make_worker(tmp_path)
+def test_each_person_gets_their_own_copy(tmp_path, yt):
+    w, store, lib, calls = make_worker(tmp_path)
     plan = Catalog(yt).resolve("album", "MPREb_EGhFrDL8Sd9")
-    a = store.add("Ellie", "album", "x", "t", "a", "", plan)
-    b = store.add("Mac", "album", "x", "t", "a", "", plan)
-    assert a["id"] == b["id"]
+    plan.tracks = plan.tracks[:1]
+    store.add("Ellie", "album", "x", "t", "a", "", plan)
+    store.add("Mac", "album", "x", "t", "a", "", plan)
+    w.run_once(); w.run_once()
+    for who in ("Ellie", "Mac"):
+        assert (lib.parent / who / "Rolf Zuckowski" / "Die schönsten Kita-Hits von Rolf Zuckowski").is_dir()
+    assert len(calls) == 2
 
 
 def test_unmounted_library_fails_the_job_without_writing(tmp_path, yt):
     w, store, lib, calls = make_worker(tmp_path)
-    shutil.rmtree(lib / "Existing Artist")
+    shutil.rmtree(tmp_path / "music" / "Existing Artist")
     plan = Catalog(yt).resolve("album", "MPREb_EGhFrDL8Sd9")
     store.add("Ellie", "album", "x", "t", "a", "", plan)
     w.run_once()
@@ -85,7 +91,7 @@ def test_download_failure_fails_job_and_cleans_staging(tmp_path, yt):
     w.run_once()
     assert store.recent()[0]["detail"] == "Video unavailable"
     assert not (lib / "Rolf Zuckowski").exists()
-    assert list((lib / ".add-music-staging").iterdir()) == []
+    assert list((lib.parent / ".add-music-staging").iterdir()) == []
 
 
 def test_scan_failure_still_completes(tmp_path, yt):
@@ -97,7 +103,7 @@ def test_scan_failure_still_completes(tmp_path, yt):
     store.add("Ellie", "album", "x", "t", "a", "", plan)
     w.run_once()
     j = store.recent()[0]
-    assert j["status"] == "done" and "next scan" in j["detail"]
+    assert j["status"] == "done" and j["detail"] == "Added 1 song"
 
 
 def test_interrupted_job_is_requeued(tmp_path, yt):

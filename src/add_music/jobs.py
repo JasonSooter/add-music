@@ -37,9 +37,11 @@ CREATE TABLE IF NOT EXISTS jobs (
   created REAL NOT NULL,
   updated REAL NOT NULL
 );
+CREATE INDEX IF NOT EXISTS jobs_who ON jobs (who, status);
 """
 
-PUBLIC = ("id", "who", "kind", "title", "artist", "thumb", "status", "detail", "created", "updated")
+PUBLIC = ("id", "who", "kind", "ref_id", "title", "artist", "thumb", "status", "detail", "created", "updated")
+ACTIVE = ("queued", "working")
 
 
 class Store:
@@ -57,12 +59,6 @@ class Store:
     def add(self, who: str, kind: str, ref_id: str, title: str, artist: str, thumb: str, plan: Plan) -> dict:
         now = time.time()
         with self._db() as db:
-            # The same thing asked for twice while it is still in flight is one job.
-            row = db.execute(
-                "SELECT * FROM jobs WHERE kind=? AND ref_id=? AND status IN ('queued','working')", (kind, ref_id)
-            ).fetchone()
-            if row:
-                return _public(row)
             cur = db.execute(
                 "INSERT INTO jobs (who,kind,ref_id,title,artist,thumb,plan,status,created,updated)"
                 " VALUES (?,?,?,?,?,?,?,'queued',?,?)",
@@ -82,6 +78,34 @@ class Store:
                 rows = db.execute("SELECT * FROM jobs ORDER BY id DESC LIMIT ?", (limit,))
             return [_public(r) for r in rows]
 
+    def queue(self, finished_within: float = 6 * 3600, limit: int = 40) -> list[dict]:
+        """Everyone's waiting and running jobs in run order, then recently
+        finished ones, newest first."""
+        with self._db() as db:
+            active = db.execute("SELECT * FROM jobs WHERE status IN ('queued','working') ORDER BY id").fetchall()
+            done = db.execute(
+                "SELECT * FROM jobs WHERE status IN ('done','failed') AND updated > ? ORDER BY updated DESC LIMIT ?",
+                (time.time() - finished_within, limit),
+            ).fetchall()
+            return [_public(r) for r in active + done]
+
+    def active(self, who: str) -> list[dict]:
+        with self._db() as db:
+            rows = db.execute("SELECT * FROM jobs WHERE who=? AND status IN ('queued','working') ORDER BY id", (who,))
+            return [{**_public(r), "plan": json.loads(r["plan"])} for r in rows]
+
+    def failed_since(self, who: str, ref_id: str, since: float) -> dict | None:
+        with self._db() as db:
+            row = db.execute(
+                "SELECT * FROM jobs WHERE who=? AND ref_id=? AND status='failed' AND updated > ? ORDER BY id DESC LIMIT 1",
+                (who, ref_id, since),
+            ).fetchone()
+            return _public(row) if row else None
+
+    def plan_of(self, job_id: int) -> Plan:
+        with self._db() as db:
+            return Plan.from_dict(json.loads(db.execute("SELECT plan FROM jobs WHERE id=?", (job_id,)).fetchone()[0]))
+
     def next_queued(self) -> sqlite3.Row | None:
         with self._db() as db:
             return db.execute("SELECT * FROM jobs WHERE status='queued' ORDER BY id LIMIT 1").fetchone()
@@ -99,14 +123,21 @@ def _public(row: sqlite3.Row) -> dict:
 @dataclass
 class Worker:
     store: Store
-    library_dir: Path
-    staging_dir: Path
+    people_dir: Path          # each person's music goes in people_dir/<Name>/
+    shared_dir: Path          # the shared library: only checked, never written
     download: Callable[[str, Path, str], Path]
     fetch: Callable[[str], bytes]
     refresh: Callable[[], None]
 
     def __post_init__(self):
         self._wake = threading.Event()
+
+    @property
+    def staging_dir(self) -> Path:
+        # Inside the people mount: a rename between two bind mounts fails
+        # (EXDEV) even on one disk, and the rename is what makes a new album
+        # appear all at once. The dot keeps it out of every library.
+        return self.people_dir / ".add-music-staging"
 
     def poke(self) -> None:
         self._wake.set()
@@ -131,17 +162,25 @@ class Worker:
         job_id = row["id"]
         self.store.set(job_id, "working", "starting")
         try:
-            detail = self.process(job_id, Plan.from_dict(json.loads(row["plan"])))
+            detail = self.process(job_id, row["who"], Plan.from_dict(json.loads(row["plan"])))
             self.store.set(job_id, "done", detail)
         except Exception as e:  # one bad job must not stop the queue
             log.exception("job %s failed", job_id)
             self.store.set(job_id, "failed", str(e) or e.__class__.__name__)
         return True
 
-    def process(self, job_id: int, plan: Plan) -> str:
-        if (problem := library.library_ok(self.library_dir)) is not None:
+    def check_storage(self) -> None:
+        """The people folder sits on the same USB drive as the shared library,
+        which has dropped before. The shared library is never empty when the
+        drive is there, so it doubles as the 'is it mounted' check."""
+        if (problem := library.library_ok(self.shared_dir, need_write=False)) is not None:
             raise RuntimeError(problem)
-        target = library.album_path(self.library_dir, plan.album_artist, plan.album)
+        if (problem := library.library_ok(self.people_dir, need_entries=False)) is not None:
+            raise RuntimeError(problem)
+
+    def process(self, job_id: int, who: str, plan: Plan) -> str:
+        self.check_storage()
+        target = library.album_path(self.people_dir / library.folder_name(who), plan.album_artist, plan.album)
         staged = self.staging_dir / f"job-{job_id}" / target.name
         if staged.parent.exists():
             shutil.rmtree(staged.parent)
@@ -155,7 +194,7 @@ class Worker:
                     log.warning("job %s: no cover from %s", job_id, plan.cover_url, exc_info=True)
             todo = [t for t in plan.tracks if not library.has_track(target, library.track_stem(t.number, t.title))]
             for i, t in enumerate(todo, 1):
-                self.store.set(job_id, "working", f"downloading {i} of {len(todo)}")
+                self.store.set(job_id, "working", f"downloading song {i} of {len(todo)}")
                 path = self.download(t.video_id, staged, library.track_stem(t.number, t.title))
                 library.tag(path, title=t.title, artist=t.artist or plan.album_artist,
                             album_artist=plan.album_artist, album=plan.album, number=t.number,
@@ -167,11 +206,13 @@ class Worker:
             shutil.rmtree(staged.parent, ignore_errors=True)
         try:
             self.refresh()
-            scanned = ""
-        except Exception as e:
-            log.warning("job %s: Jellyfin scan failed: %s", job_id, e)
-            scanned = " (Jellyfin will pick it up on its next scan)"
+        except Exception as e:  # real-time monitoring will still find it
+            log.warning("job %s: Jellyfin scan request failed: %s", job_id, e)
         already = len(plan.tracks) - len(todo) + skipped
         if added == 0:
-            return "Already in the library" + scanned
-        return f"Added {added} song{'s' * (added != 1)}" + (f", {already} already there" if already else "") + scanned
+            return "Already in your library"
+        return f"Added {_songs(added)}" + (f", {already} already there" if already else "")
+
+
+def _songs(n: int) -> str:
+    return f"{n} song" + ("" if n == 1 else "s")
