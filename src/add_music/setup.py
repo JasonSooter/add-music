@@ -38,7 +38,8 @@ def plan(jf: Jellyfin, people: dict[str, Person], people_path: str) -> tuple[lis
     folders = jf._get("/Library/VirtualFolders").json()
     by_name = {f["Name"]: f for f in folders}
     person_libs = {p.library_name for p in people.values()}
-    template = next((f for f in folders if f.get("CollectionType") == "music" and f["Name"] not in person_libs), None)
+    template = next((f for f in folders if f.get("CollectionType") == "music" and f["Name"] not in person_libs
+                     and not any((loc or "").startswith(people_path.rstrip("/") + "/") for loc in f.get("Locations") or [])), None)
     if template is None:
         raise SystemExit("no shared music library to copy options from")
 
@@ -48,7 +49,15 @@ def plan(jf: Jellyfin, people: dict[str, Person], people_path: str) -> tuple[lis
             creates.append({"name": p.library_name, "path": f"{people_path.rstrip('/')}/{p.folder}",
                             "options": template.get("LibraryOptions") or {}})
 
-    common = sorted(_id(f["ItemId"]) for f in folders if f["Name"] not in person_libs)
+    # A library is private if it is named for a person OR lives under the
+    # people path -- so the library of someone since removed from (or renamed
+    # in) ADD_MUSIC_PEOPLE is never mistaken for a shared one and handed out.
+    root = people_path.rstrip("/") + "/"
+
+    def private(f) -> bool:
+        return f["Name"] in person_libs or any((loc or "").startswith(root) for loc in f.get("Locations") or [])
+
+    common = sorted(_id(f["ItemId"]) for f in folders if not private(f))
     users = {u["Name"].casefold(): u for u in jf._get("/Users").json()}
     names = {_id(f["ItemId"]): f["Name"] for f in folders}
     policies = []
