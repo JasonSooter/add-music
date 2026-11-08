@@ -28,7 +28,7 @@ def norm(s: str | None) -> str:
 # "Hamilton" already in the library; "Hamilton (Instrumentals)" is not.
 _EDITION = re.compile(
     r"\s*[(\[][^)\]]*\b(original|cast|recording|soundtrack|deluxe|edition|expanded|remaster(ed)?|"
-    r"anniversary|bonus|version|mono|stereo|feat\.?|featuring|with)\b[^)\]]*[)\]]",
+    r"anniversary|bonus|feat\.?|featuring|with)\b[^)\]]*[)\]]",
     re.I,
 )
 
