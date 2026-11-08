@@ -5,12 +5,22 @@ from __future__ import annotations
 from pathlib import Path
 
 
-def download(video_id: str, dest_dir: Path, stem: str) -> Path:
-    """Download the best audio stream to `dest_dir/<stem>.<ext>`.
+OPTIONS = {
+    "format": "bestaudio[acodec=opus]/bestaudio",
+    "postprocessors": [{"key": "FFmpegExtractAudio", "preferredcodec": "opus"}],
+}
 
-    AAC in M4A is preferred (every Jellyfin client plays it); otherwise the
-    Opus stream is pulled out of its WebM container. ExtractAudio with codec
-    "best" copies the stream rather than transcoding it.
+
+def download(video_id: str, dest_dir: Path, stem: str) -> Path:
+    """Download the audio to `dest_dir/<stem>.opus`.
+
+    Opus in an Ogg container, because that is what Jellify (the kids' player
+    on their Boox readers) plays directly: its device profile lists only mp3,
+    flac, wav and ogg. Anything else -- the M4A/AAC this used to keep -- makes
+    Jellyfin transcode on the fly, and that path played silently on a Boox Go
+    Color 7 (2026-11-08). YouTube's best audio stream is Opus anyway, so
+    ExtractAudio only copies it out of its WebM container; a video without an
+    Opus stream is the rare case that gets encoded.
 
     YouTube's player JS has to be solved to get stream URLs; that needs a JS
     runtime (deno, on PATH in the image) and the yt-dlp-ejs solver, which the
@@ -19,9 +29,9 @@ def download(video_id: str, dest_dir: Path, stem: str) -> Path:
 
     dest_dir.mkdir(parents=True, exist_ok=True)
     opts = {
-        "format": "bestaudio[ext=m4a]/bestaudio",
+        "format": OPTIONS["format"],
         "outtmpl": str(dest_dir / f"{stem}.%(ext)s"),
-        "postprocessors": [{"key": "FFmpegExtractAudio", "preferredcodec": "best"}],
+        "postprocessors": OPTIONS["postprocessors"],
         "quiet": True,
         "no_warnings": True,
         "noprogress": True,

@@ -102,6 +102,10 @@ class Store:
             ).fetchone()
             return _public(row) if row else None
 
+    def done_jobs(self) -> list[dict]:
+        with self._db() as db:
+            return [_public(r) for r in db.execute("SELECT * FROM jobs WHERE status='done' ORDER BY id")]
+
     def plan_of(self, job_id: int) -> Plan:
         with self._db() as db:
             return Plan.from_dict(json.loads(db.execute("SELECT plan FROM jobs WHERE id=?", (job_id,)).fetchone()[0]))
