@@ -1,4 +1,4 @@
-"""yt-dlp: fetch one track's audio without re-encoding it."""
+"""yt-dlp: fetch one track's audio as MP3."""
 
 from __future__ import annotations
 
@@ -6,21 +6,20 @@ from pathlib import Path
 
 
 OPTIONS = {
-    "format": "bestaudio[acodec=opus]/bestaudio",
-    "postprocessors": [{"key": "FFmpegExtractAudio", "preferredcodec": "opus"}],
+    "format": "bestaudio",
+    "postprocessors": [{"key": "FFmpegExtractAudio", "preferredcodec": "mp3", "preferredquality": "0"}],
 }
 
 
 def download(video_id: str, dest_dir: Path, stem: str) -> Path:
-    """Download the audio to `dest_dir/<stem>.opus`.
+    """Download the audio to `dest_dir/<stem>.mp3` (LAME VBR V0, ~245 kbps).
 
-    Opus in an Ogg container, because that is what Jellify (the kids' player
-    on their Boox readers) plays directly: its device profile lists only mp3,
-    flac, wav and ogg. Anything else -- the M4A/AAC this used to keep -- makes
-    Jellyfin transcode on the fly, and that path played silently on a Boox Go
-    Color 7 (2026-11-08). YouTube's best audio stream is Opus anyway, so
-    ExtractAudio only copies it out of its WebM container; a video without an
-    Opus stream is the rare case that gets encoded.
+    MP3 because it is the one format that played on every device we have.
+    Jellify (the kids' player on their Boox readers) direct-plays only
+    mp3/flac/wav/ogg, and on a Boox Go Color 7 neither Jellyfin's on-the-fly
+    transcode of M4A nor direct-played Ogg/Opus made any sound, while the
+    shared library's MP3s played (2026-11-08). The cost is one re-encode of
+    YouTube's stream, inaudible at V0.
 
     YouTube's player JS has to be solved to get stream URLs; that needs a JS
     runtime (deno, on PATH in the image) and the yt-dlp-ejs solver, which the

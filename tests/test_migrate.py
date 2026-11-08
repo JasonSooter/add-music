@@ -1,79 +1,59 @@
-import shutil
-
 from mutagen import File
 
 from add_music import library
-from add_music.catalog import Catalog
-from add_music.jobs import Store
-from add_music.migrate import convert, plan
+from add_music.migrate import convert, targets
 from conftest import make_audio, make_jpeg
 
 
-def test_downloads_opus():
+def test_downloads_mp3():
     from add_music.downloader import OPTIONS
-    assert OPTIONS["format"].startswith("bestaudio[acodec=opus]")
-    assert OPTIONS["postprocessors"][0]["preferredcodec"] == "opus"
+    pp = OPTIONS["postprocessors"][0]
+    assert pp["preferredcodec"] == "mp3" and pp["preferredquality"] == "0"
 
 
-def test_plan_and_convert(tmp_path, yt):
+def _tagged(path, codec):
+    f = make_audio(path, codec)
+    cover = library.square_cover(make_jpeg(300, 300))
+    library.tag(f, title="Brutal", artist="Olivia Rodrigo", album_artist="Olivia Rodrigo",
+                album="SOUR", number=1, total=11, year="2021", cover=cover)
+    return f, cover
+
+
+def test_mp3_tag_round_trip(tmp_path):
+    f = make_audio(tmp_path / "x.mp3", "mp3")
+    cover = library.square_cover(make_jpeg(300, 300))
+    library.tag(f, title="T", artist="A, B", album_artist="A", album="Al", number=3, total=9, year="2020", cover=cover)
+    m = File(f)
+    assert str(m["TIT2"]) == "T" and str(m["TPE2"]) == "A" and str(m["TRCK"]) == "3/9" and str(m["TDRC"]) == "2020"
+    assert m.tags.version[:2] == (2, 3)
+    assert m["APIC:Cover"].data == cover
+
+
+def test_converts_opus_and_m4a_in_place(tmp_path):
     people = tmp_path / "people"
-    store = Store(tmp_path / "jobs.db")
-    p = Catalog(yt).resolve("album", "MPREb_EGhFrDL8Sd9")
-    p.tracks = p.tracks[:1]
-    job = store.add("Mac", "album", "x", "t", "a", "", p)
-    store.set(job["id"], "done", "Added 1 song")
-    album = library.album_path(people / "Mac", p.album_artist, p.album)
+    album = people / "Ellie" / "Olivia Rodrigo" / "SOUR"
     album.mkdir(parents=True)
-    m4a = make_audio(album / f"{library.track_stem(1, p.tracks[0].title)}.m4a", "m4a")
-    cover = library.square_cover(make_jpeg(400, 400))
-    library.tag(m4a, title=p.tracks[0].title, artist="Rolf Zuckowski und seine Freunde", album_artist=p.album_artist,
-                album=p.album, number=1, total=26, year="2025", cover=cover)
-    stray = make_audio(people / "Mac" / "hand-filed.m4a", "m4a")
-
-    known, unknown = plan(store, people)
-    assert known == [(m4a, p.tracks[0].video_id)] and unknown == [stray]
-
-    src = make_audio(tmp_path / "src.opus", "opus")
-
-    def download(vid, dest, stem):
-        dest.mkdir(parents=True, exist_ok=True)
-        return shutil.copy(src, dest / f"{stem}.opus") and dest / f"{stem}.opus"
-
-    new = convert(m4a, p.tracks[0].video_id, people / ".add-music-staging", download)
-    assert new.suffix == ".opus" and new.exists() and not m4a.exists()
-    m = File(new)
-    assert m["albumartist"] == [p.album_artist] and m["tracknumber"] == ["1"] and m["tracktotal"] == ["26"]
-    assert "metadata_block_picture" in m
-    assert plan(store, people) == ([], [stray])          # re-running finds nothing more to do
+    opus, cover = _tagged(album / "01 - brutal.opus", "opus")
+    m4a, _ = _tagged(album / "02 - traitor.m4a", "m4a")
+    (people / ".add-music-staging").mkdir()
+    make_audio(people / ".add-music-staging" / "ignore.opus", "opus")
+    assert targets(people) == [opus, m4a]
+    for src in (opus, m4a):
+        out = convert(src, people / ".add-music-staging")
+        assert out.suffix == ".mp3" and out.exists() and not src.exists()
+        m = File(out)
+        assert str(m["TALB"]) == "SOUR" and str(m["TRCK"]) == "1/11" and m["APIC:Cover"].data == cover
+    assert targets(people) == []
 
 
-def test_first_job_owns_the_id(tmp_path, yt):
-    people = tmp_path / "people"
-    store = Store(tmp_path / "jobs.db")
-    p = Catalog(yt).resolve("album", "MPREb_EGhFrDL8Sd9")
-    p.tracks = p.tracks[:1]
-    first = store.add("Mac", "album", "x", "t", "a", "", p)
-    store.set(first["id"], "done", "Added 1 song")
-    later = Catalog(yt).resolve("album", "MPREb_EGhFrDL8Sd9")
-    later.tracks = later.tracks[:1]
-    later.tracks[0].video_id = "someOtherId"     # e.g. the same song asked for via search
-    j2 = store.add("Mac", "song", "y", "t", "a", "", later)
-    store.set(j2["id"], "done", "Already in your library")
-    album = library.album_path(people / "Mac", p.album_artist, p.album)
-    album.mkdir(parents=True)
-    make_audio(album / f"{library.track_stem(1, p.tracks[0].title)}.m4a", "m4a")
-    [(_, vid)] = plan(store, people)[0]
-    assert vid == p.tracks[0].video_id
-
-
-def test_interrupted_run_finishes_without_downloading(tmp_path):
+def test_interrupted_run_finishes(tmp_path):
     album = tmp_path / "people" / "Mac" / "A" / "B"
     album.mkdir(parents=True)
-    m4a = make_audio(album / "01 - Song.m4a", "m4a")
-    opus = make_audio(album / "01 - Song.opus", "opus")
+    src = make_audio(album / "01 - Song.opus", "opus")
+    mp3 = make_audio(album / "01 - Song.mp3", "mp3")
 
-    def download(*a):
-        raise AssertionError("must not download again")
+    def encode(*a):
+        raise AssertionError("must not encode again")
 
-    assert convert(m4a, "vid", tmp_path / "people" / ".add-music-staging", download) == opus
-    assert not m4a.exists() and opus.exists()
+    assert convert(src, tmp_path / "people" / ".add-music-staging", encode) == mp3
+    assert not src.exists()

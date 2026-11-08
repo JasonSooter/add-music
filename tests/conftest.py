@@ -50,7 +50,7 @@ def yt():
 
 def make_audio(path: Path, codec: str) -> Path:
     """A one-second real audio file, so mutagen tags a real container."""
-    args = {"m4a": ["-c:a", "aac"], "opus": ["-c:a", "libopus"]}[codec]
+    args = {"m4a": ["-c:a", "aac"], "opus": ["-c:a", "libopus"], "mp3": ["-c:a", "libmp3lame"]}[codec]
     subprocess.run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i", "sine=frequency=440:duration=1", *args, str(path)],
                    check=True)
     return path

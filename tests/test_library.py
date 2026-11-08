@@ -29,14 +29,17 @@ def test_square_cover_crops_16_9():
     assert Image.open(io.BytesIO(library.square_cover(make_jpeg(2000, 2000)))).size == (1200, 1200)
 
 
-@pytest.mark.parametrize("codec", ["m4a", "opus"])
+@pytest.mark.parametrize("codec", ["m4a", "opus", "mp3"])
 def test_tag_round_trip(tmp_path, codec):
     p = make_audio(tmp_path / f"t.{codec}", codec)
     cover = library.square_cover(make_jpeg(600, 600))
     library.tag(p, title="Die Jahresuhr", artist="Rolf Zuckowski und seine Freunde", album_artist="Rolf Zuckowski",
                 album="Rolfs Liederkalender", number=3, total=12, year="1981", cover=cover)
     m = File(p)
-    if codec == "m4a":
+    if codec == "mp3":
+        assert str(m["TIT2"]) == "Die Jahresuhr" and str(m["TPE2"]) == "Rolf Zuckowski"
+        assert str(m["TRCK"]) == "3/12" and str(m["TDRC"]) == "1981" and m["APIC:Cover"].data == cover
+    elif codec == "m4a":
         assert m["\xa9nam"] == ["Die Jahresuhr"] and m["aART"] == ["Rolf Zuckowski"]
         assert m["\xa9alb"] == ["Rolfs Liederkalender"] and m["trkn"] == [(3, 12)] and m["\xa9day"] == ["1981"]
         assert bytes(m["covr"][0]) == cover
