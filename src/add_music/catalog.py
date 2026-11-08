@@ -80,11 +80,65 @@ class Catalog:
             songs, albums, artists = pool.map(
                 lambda f: self.yt.search(q, filter=f) or [], ["songs", "albums", "artists"]
             )
+        songs = self._cleaned(songs, self._clean_song)
+        albums = self._cleaned(albums, self._clean_album)
         return {
             "songs": [s for s in map(self._song, songs) if s][:20],
             "albums": [a for a in map(self._album, albums) if a][:20],
             "artists": [a for a in map(self._artist, artists) if a][:10],
         }
+
+    # ---- clean versions ---------------------------------------------------
+    # YouTube Music ranks the explicit version of a song first and often
+    # offers a clean one further down (Olivia Rodrigo's "pretty isn't pretty",
+    # 2026-11-08: the explicit one was hidden and the clean one never shown).
+    # Explicit items are swapped for their clean version where one exists,
+    # and dropped otherwise -- never shown.
+
+    def _cleaned(self, items: list, find, limit: int = 4) -> list:
+        explicit = [i for i in items if i.get("isExplicit")][:limit]
+        if not explicit:
+            return items
+        with ThreadPoolExecutor(len(explicit)) as pool:
+            found = dict(zip(map(id, explicit), pool.map(self._safe(find), explicit)))
+        out, seen = [], set()
+        for i in items:
+            i = found.get(id(i), i) if i.get("isExplicit") else i
+            key = i.get("videoId") or i.get("browseId") if i else None
+            if i is not None and key not in seen:
+                seen.add(key)
+                out.append(i)
+        return out
+
+    @staticmethod
+    def _safe(fn):
+        def run(x):
+            try:
+                return fn(x)
+            except Exception:
+                return None
+        return run
+
+    def _clean_song(self, s: dict) -> dict | None:
+        from .jellyfin import artist_keys, norm
+
+        artist = names(s.get("artists"))
+        want = artist_keys(*artist.split(","))
+        for r in self.yt.search(f"{s.get('title', '')} {artist} clean", filter="songs") or []:
+            if (not r.get("isExplicit") and r.get("videoId") and norm(r.get("title")) == norm(s.get("title"))
+                    and (not want or want & artist_keys(*names(r.get("artists")).split(",")))):
+                return {**r, "clean": True}
+        return None
+
+    def _clean_album(self, a: dict) -> dict | None:
+        if not a.get("browseId"):
+            return None
+        full = self.yt.get_album(a["browseId"])
+        for v in full.get("other_versions") or []:
+            if not v.get("isExplicit") and v.get("browseId"):
+                return {**v, "year": v.get("year") or a.get("year"), "clean": True,
+                        "artists": v.get("artists") or a.get("artists")}
+        return None
 
     def artist(self, browse_id: str) -> dict:
         a = self.yt.get_artist(browse_id)
@@ -97,6 +151,8 @@ class Catalog:
                     results = self.yt.get_artist_albums(section["browseId"], section["params"]) or results
                 except Exception:
                     pass
+            results = self._cleaned([{**r, "artists": r.get("artists") or [{"name": out["title"]}]} for r in results],
+                                    self._clean_album, limit=8)
             items = []
             for r in results:
                 r = {**r, "artists": r.get("artists") or [{"name": out["title"]}]}
@@ -107,6 +163,13 @@ class Catalog:
 
     def album(self, browse_id: str) -> dict:
         a = self.yt.get_album(browse_id)
+        # The album flag alone isn't enough: the explicit GUTS reports
+        # isExplicit False on its own page while 7 of its 12 songs are
+        # explicit. Any explicit song + a clean edition -> show the edition.
+        if a.get("isExplicit") or any(t.get("isExplicit") for t in a.get("tracks") or []):
+            clean = next((v for v in a.get("other_versions") or [] if not v.get("isExplicit") and v.get("browseId")), None)
+            if clean is not None:
+                browse_id, a = clean["browseId"], self.yt.get_album(clean["browseId"])
         if a.get("isExplicit"):
             raise Blocked("This album is marked explicit.")
         tracks = [
@@ -224,6 +287,7 @@ class Catalog:
             "album": {"id": album.get("id"), "name": album.get("name")} if album else None,
             "duration": s.get("duration") or "",
             "thumb": thumb(s.get("thumbnails"), 226),
+            "clean": bool(s.get("clean")),
         }
 
     @staticmethod
@@ -238,6 +302,7 @@ class Catalog:
             "year": a.get("year") or "",
             "kind": a.get("type") or "Album",
             "thumb": thumb(a.get("thumbnails"), 226),
+            "clean": bool(a.get("clean")),
         }
 
     @staticmethod
