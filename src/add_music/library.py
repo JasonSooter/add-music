@@ -13,7 +13,7 @@ import os
 import shutil
 from pathlib import Path
 
-AUDIO_EXTS = {".m4a", ".opus", ".ogg", ".mp3", ".flac"}
+AUDIO_EXTS = {".mp3", ".m4a", ".opus", ".ogg", ".flac"}
 
 
 def folder_name(s: str) -> str:
@@ -68,7 +68,26 @@ def tag(path: Path, *, title: str, artist: str, album_artist: str, album: str,
         number: int, total: int, year: str, cover: bytes | None) -> None:
     """Write the tags Jellyfin reads, with the cover embedded."""
     ext = path.suffix.lower()
-    if ext == ".m4a":
+    if ext == ".mp3":
+        from mutagen.id3 import APIC, ID3, TALB, TDRC, TIT2, TPE1, TPE2, TRCK, ID3NoHeaderError
+
+        try:
+            ID3(path).delete(path)
+        except ID3NoHeaderError:
+            pass
+        m = ID3()
+        m.add(TIT2(encoding=3, text=title))
+        m.add(TPE1(encoding=3, text=artist))
+        m.add(TPE2(encoding=3, text=album_artist))
+        m.add(TALB(encoding=3, text=album))
+        m.add(TRCK(encoding=3, text=f"{number}/{total}"))
+        if year:
+            m.add(TDRC(encoding=3, text=year))
+        if cover:
+            m.add(APIC(encoding=3, mime="image/jpeg", type=3, desc="Cover", data=cover))
+        # v2.3: what the shared library's MP3s carry, and what every player reads.
+        m.save(path, v2_version=3)
+    elif ext == ".m4a":
         from mutagen.mp4 import MP4, MP4Cover
 
         m = MP4(path)
@@ -154,3 +173,32 @@ def _move(src: Path, dest: Path) -> None:
         os.rename(src, dest)
     except OSError:  # staging on another filesystem: not atomic, but correct
         shutil.move(str(src), str(dest))
+
+
+def read_tags(path: Path) -> dict:
+    """The tags `tag()` writes, read back from an M4A, Opus or MP3 file."""
+    from mutagen import File
+
+    ext = path.suffix.lower()
+    if ext == ".m4a":
+        from mutagen.mp4 import MP4
+
+        m = MP4(path)
+        first = lambda k: (m.get(k) or [""])[0]
+        number, total = (m.get("trkn") or [(1, 1)])[0]
+        return {"title": first("\xa9nam"), "artist": first("\xa9ART"), "album_artist": first("aART"),
+                "album": first("\xa9alb"), "number": number or 1, "total": total or number or 1,
+                "year": first("\xa9day"), "cover": bytes(m["covr"][0]) if m.get("covr") else None}
+    if ext in (".opus", ".ogg"):
+        from mutagen.flac import Picture
+
+        m = File(path)
+        first = lambda k: (m.get(k) or [""])[0]
+        number = int(first("tracknumber").split("/")[0] or 1)
+        cover = None
+        if m.get("metadata_block_picture"):
+            cover = Picture(base64.b64decode(m["metadata_block_picture"][0])).data
+        return {"title": first("title"), "artist": first("artist"), "album_artist": first("albumartist"),
+                "album": first("album"), "number": number, "total": int(first("tracktotal") or number),
+                "year": first("date"), "cover": cover}
+    raise ValueError(f"don't know how to read {path.name}")

@@ -43,7 +43,7 @@ def build_app():
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
-    if sys.argv[1:2] == ["migrate-opus"]:
+    if sys.argv[1:2] == ["migrate-mp3"]:
         from .migrate import main as migrate_main
 
         return migrate_main(sys.argv[2:])

@@ -96,9 +96,12 @@ def main(argv: list[str]) -> None:
         sys.exit("JELLYFIN_API_KEY is not set")
 
     creates, policies = plan(jf, people, people_path)
-    if not creates and not policies:
+    missing_keep = [p.name for p in people.values() if not (people_dir / p.folder / ".keep").exists()]
+    if not creates and not policies and not missing_keep:
         print("Nothing to change.")
         return
+    for name in missing_keep:
+        print(f"KEEP-FILE {people_dir / name / '.keep'}")
     for c in creates:
         print(f"CREATE library {c['name']!r} at {c['path']}")
     for pol in policies:
@@ -114,6 +117,15 @@ def main(argv: list[str]) -> None:
         jf._post("/Library/VirtualFolders", json={"LibraryOptions": options},
                  name=c["name"], collectionType="music", refreshLibrary="false")
         print(f"created {c['name']}")
+    # An EMPTY library folder is skipped by Jellyfin's scan ("inaccessible or
+    # empty") as if the drive were missing, so deleting a person's last album
+    # left it listed (2026-11-08). A placeholder keeps every folder non-empty.
+    for p in people.values():
+        keep = people_dir / p.folder / ".keep"
+        keep.parent.mkdir(parents=True, exist_ok=True)
+        if not keep.exists():
+            keep.write_text("Keeps this library folder non-empty so Jellyfin scans it "
+                            "(an empty one is skipped as possibly unmounted).\n")
     # Re-plan: the new libraries have ids now, and policies must include them.
     _, policies = plan(jf, people, people_path)
     for pol in policies:
