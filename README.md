@@ -7,8 +7,10 @@ Jellyfin scans it in.
 
 - **Search**: [ytmusicapi](https://github.com/sigma67/ytmusicapi), which returns real
   albums, artists and track lists (not just videos), with art, year and track numbers.
-- **Download**: [yt-dlp](https://github.com/yt-dlp/yt-dlp). The original audio stream
-  is kept (AAC in M4A, or Opus), never re-encoded.
+- **Download**: [yt-dlp](https://github.com/yt-dlp/yt-dlp). YouTube's own Opus stream is
+  copied into an Ogg file (`.opus`) with no re-encoding. Ogg is a format the Jellify app
+  plays directly; M4A gets converted on the fly instead, and that played silently on a
+  Boox. `add-music migrate-opus [--apply]` converts M4A files from older versions.
 - **No explicit content**: explicit songs and albums are dropped on the server.
   They never reach the page, and a crafted request for one gets a 403.
 - **A library per person**:
