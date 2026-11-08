@@ -83,6 +83,15 @@
   .people button { padding: 18px 8px; border-radius: 16px; border: 2px solid var(--line); background: var(--bg);
                    font-size: 1.1rem; font-weight: 650; cursor: pointer; }
   .people button:hover { border-color: var(--accent); }
+  .badge { flex: none; font-size: .85rem; font-weight: 650; padding: 8px 12px; border-radius: 999px; background: var(--bg); white-space: nowrap; }
+  .badge.mine, .badge.shared { color: var(--ok); }
+  .badge.queued { color: var(--accent); }
+  .badge.later { color: var(--muted); }
+  .nav { display: flex; gap: 8px; margin: 0 0 14px; flex-wrap: wrap; }
+  .nav button { border: 2px solid var(--line); background: var(--card); padding: 8px 16px; border-radius: 999px; cursor: pointer; font-weight: 600; }
+  .nav button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+  .banner { background: var(--card); border-left: 4px solid var(--accent); padding: 10px 14px; border-radius: 10px; margin: 0 0 12px; }
+  .pos { width: 2.2ch; text-align: center; font-weight: 700; color: var(--accent); flex: none; }
   .toast { position: fixed; left: 50%; top: 16px; transform: translateX(-50%); background: var(--ink); color: var(--bg);
            padding: 10px 18px; border-radius: 999px; z-index: 10; max-width: calc(100% - 32px); }
 </style>
@@ -94,6 +103,12 @@
     <button class="who" id="who" type="button">Who are you?</button>
   </header>
 
+  <nav class="nav" id="nav">
+    <button type="button" data-v="find" aria-pressed="true">🔍 Find music</button>
+    <button type="button" data-v="library" aria-pressed="false">📚 My library</button>
+    <button type="button" data-v="queue" aria-pressed="false">🎶 Family queue</button>
+  </nav>
+  <p class="banner" id="banner" hidden></p>
   <form class="searchbox" id="form" role="search" autocomplete="off">
     <input id="q" type="search" placeholder="Search for a song, album or singer…" aria-label="Search"
            aria-autocomplete="list" aria-controls="suggest" enterkeyhint="search">
@@ -120,7 +135,7 @@ const $ = (id) => document.getElementById(id);
 const api = async (path, opts) => {
   const r = await fetch(path, opts);
   const body = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(body.detail || `Something went wrong (${r.status})`);
+  if (!r.ok) throw Object.assign(new Error(body.detail || `Something went wrong (${r.status})`), { status: r.status });
   return body;
 };
 // Build DOM nodes without innerHTML: every string here came from YouTube.
@@ -158,12 +173,20 @@ async function add(btn, body) {
     await api("api/requests", { method: "POST", headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ ...body, who }) });
     btn.textContent = "✓ Added"; btn.classList.add("done");
+    // A whole album covers its songs too.
+    if (body.kind === "album") for (const b of $("view").querySelectorAll(".list .add")) b.replaceWith(badge("queued"));
     toast("On its way! It will show up in Jellyfin soon.");
     $("tray").open = true; loadJobs();
   } catch (e) {
-    btn.disabled = false; btn.textContent = "+ Add"; toast(e.message);
+    if (e.status === 409) { btn.replaceWith(badge(/everyone/.test(e.message) ? "shared" : /way/.test(e.message) ? "queued" : "mine")); }
+    else { btn.disabled = false; btn.textContent = "+ Add"; }
+    toast(e.message); loadJobs();
   }
 }
+const BADGE = { mine: "✓ In your library", shared: "✓ In Music for everyone", queued: "⏳ On its way", later: "Try again later" };
+const badge = (state) => el("span", { className: `badge ${state}`, textContent: BADGE[state] || state });
+// An item someone already has (or is getting) shows a badge, not a button.
+const action = (state, label, body) => state ? badge(state) : addBtn(label, body);
 const addBtn = (label, body) => {
   const b = el("button", { className: "add", type: "button", textContent: label });
   b.onclick = (ev) => { ev.stopPropagation(); add(b, body); };
@@ -171,7 +194,8 @@ const addBtn = (label, body) => {
 };
 
 // ---- views -------------------------------------------------------------
-const view = (...nodes) => { $("view").replaceChildren(...nodes); window.scrollTo(0, 0); };
+// Sections may be arrays or null (an empty section): flatten and drop them.
+const view = (...nodes) => { $("view").replaceChildren(...nodes.flat(2).filter((n) => n != null)); window.scrollTo(0, 0); };
 const msg = (text) => el("p", { className: "msg", textContent: text });
 let lastResults = null, tab = "songs";
 
@@ -180,12 +204,13 @@ const songRow = (s) => el("div", { className: "row" },
   el("div", { className: "grow" },
     el("div", { className: "t", textContent: s.title }),
     el("div", { className: "s", textContent: [s.artists, s.album?.name].filter(Boolean).join(" · ") })),
-  addBtn("+ Add", { kind: "song", id: s.id, album_id: s.album?.id || null }));
+  action(s.state, "+ Add", { kind: "song", id: s.id, album_id: s.album?.id || null }));
 
 const albumCard = (a) => {
   const c = el("div", { className: "card clickable" }, img(a.thumb),
     el("div", { className: "t", textContent: a.title }),
-    el("div", { className: "s", textContent: [a.artists, a.year, a.kind !== "Album" ? a.kind : null].filter(Boolean).join(" · ") }));
+    el("div", { className: "s", textContent: [a.artists, a.year, a.kind !== "Album" ? a.kind : null].filter(Boolean).join(" · ") }),
+    a.state ? badge(a.state) : null);
   c.onclick = () => openAlbum(a.id);
   return c;
 };
@@ -214,10 +239,11 @@ function showResults() {
 
 async function search(q) {
   hideSuggest();
+  if (currentView !== "find") setView("find");
   if (!q.trim()) return;
   view(msg("Searching…"));
   try {
-    lastResults = await api(`api/search?q=${encodeURIComponent(q)}`);
+    lastResults = await api(`api/search?q=${encodeURIComponent(q)}${whoParam()}`);
     const counts = ["songs", "albums", "artists"].map((k) => lastResults[k].length);
     if (!lastResults[tab].length) tab = ["songs", "albums", "artists"][counts.findIndex((n) => n)] || "songs";
     history.replaceState(null, "", `#q=${encodeURIComponent(q)}`);
@@ -231,32 +257,85 @@ const backBtn = () => el("button", { className: "back", type: "button", textCont
 async function openAlbum(id) {
   view(msg("Loading album…"));
   try {
-    const a = await api(`api/album/${encodeURIComponent(id)}`);
+    const a = await api(`api/album/${encodeURIComponent(id)}?${whoParam().slice(1)}`);
     view(backBtn(),
       el("div", { className: "hero" }, img(a.thumb),
         el("div", {},
           el("h2", { textContent: a.title }),
-          el("div", { className: "s", textContent: [a.artists, a.year, `${a.tracks.length} songs`].filter(Boolean).join(" · ") }),
-          addBtn("+ Add whole album", { kind: "album", id: a.id }))),
+          el("div", { className: "s", textContent: [a.artists, a.year, songs(a.tracks.length)].filter(Boolean).join(" · ") }),
+          action(a.state, "+ Add whole album", { kind: "album", id: a.id }))),
       el("div", { className: "list" }, a.tracks.map((t) => el("div", { className: "row" },
         el("span", { className: "num", textContent: t.number }),
         el("div", { className: "grow" },
           el("div", { className: "t", textContent: t.title }),
           el("div", { className: "s", textContent: [t.artists, t.duration].filter(Boolean).join(" · ") })),
-        addBtn("+ Add", { kind: "song", id: t.id, album_id: a.id })))));
+        action(t.state, "+ Add", { kind: "song", id: t.id, album_id: a.id })))));
   } catch (e) { view(backBtn(), msg(e.message)); }
 }
 
 async function openArtist(id) {
   view(msg("Loading…"));
   try {
-    const a = await api(`api/artist/${encodeURIComponent(id)}`);
+    const a = await api(`api/artist/${encodeURIComponent(id)}?${whoParam().slice(1)}`);
     view(backBtn(),
       el("div", { className: "hero artist" }, img(a.thumb), el("div", {}, el("h2", { textContent: a.title }))),
       a.albums.length ? [el("h3", { textContent: "Albums" }), el("div", { className: "grid" }, a.albums.map(albumCard))] : null,
       a.singles.length ? [el("h3", { textContent: "Singles" }), el("div", { className: "grid" }, a.singles.map(albumCard))] : null,
       !a.albums.length && !a.singles.length ? msg("No albums found for this singer.") : null);
   } catch (e) { view(backBtn(), msg(e.message)); }
+}
+
+
+// ---- my library & family queue ---------------------------------------------
+let currentView = "find";
+function setView(v) {
+  currentView = v;
+  for (const b of $("nav").children) b.setAttribute("aria-pressed", String(b.dataset.v === v));
+  $("form").hidden = v !== "find";
+  if (v === "find") lastResults ? showResults() : view(msg("Type the name of a song, an album or a singer."));
+  else if (v === "library") showLibrary();
+  else showQueue();
+}
+for (const b of $("nav").children) b.onclick = () => setView(b.dataset.v);
+
+const libCard = (a) => el("div", { className: "card" }, img(a.thumb),
+  el("div", { className: "t", textContent: a.title }),
+  el("div", { className: "s", textContent: [a.artist, a.year].filter(Boolean).join(" · ") }));
+
+async function showLibrary() {
+  if (!who) return pickWho();
+  view(msg("Loading your library…"));
+  try {
+    const lib = await api(`api/library?${whoParam().slice(1)}`);
+    if (currentView !== "library") return;
+    if (!lib.connected) return view(msg("Can't reach Jellyfin right now."));
+    view(
+      el("h3", { textContent: `${who}'s music (${lib.mine.length})` }),
+      lib.mine.length ? el("div", { className: "grid" }, lib.mine.map(libCard)) : msg("Nothing yet — find something you like and tap + Add!"),
+      el("h3", { textContent: `Music for everyone (${lib.shared.length})` }),
+      el("div", { className: "grid" }, lib.shared.map(libCard)));
+  } catch (e) { view(msg(e.message)); }
+}
+
+async function showQueue(quiet) {
+  if (!quiet) view(msg("Loading…"));
+  try {
+    const q = await api("api/queue");
+    if (currentView !== "queue") return;
+    const active = q.filter((j) => j.status === "queued" || j.status === "working");
+    const done = q.filter((j) => j.status === "done" || j.status === "failed");
+    const row = (j, i) => el("div", { className: "row" },
+      i != null ? el("span", { className: "pos", textContent: j.status === "working" ? "▶" : i + 1 }) : null,
+      img(j.thumb),
+      el("div", { className: "grow" },
+        el("div", { className: "t", textContent: j.title }),
+        el("div", { className: "s", textContent: `${j.who} · ${j.detail || j.artist}` })),
+      el("span", { className: `status ${j.status}`, textContent: LABEL[j.status] }));
+    view(
+      el("h3", { textContent: active.length ? `On the way (${active.length})` : "Nothing on the way" }),
+      active.length ? el("div", { className: "list" }, active.map(row)) : msg("The queue is empty."),
+      done.length ? [el("h3", { textContent: "Finished recently" }), el("div", { className: "list" }, done.map((j) => row(j, null)))] : null);
+  } catch (e) { if (!quiet) view(msg(e.message)); }
 }
 
 // ---- autocomplete -------------------------------------------------------
@@ -300,7 +379,11 @@ $("q").addEventListener("blur", () => setTimeout(hideSuggest, 100));
 $("form").addEventListener("submit", (e) => { e.preventDefault(); clearTimeout(suggestTimer); suggestSeq++; search($("q").value); $("q").blur(); });
 
 // ---- my music tray -----------------------------------------------------
-const LABEL = { queued: "⏳ Waiting", working: "⬇️ Downloading", done: "✓ In Jellyfin", failed: "⚠️ Didn't work" };
+const LABEL = { queued: "⏳ Waiting", working: "⬇️ Downloading", done: "✓ Added", failed: "⚠️ Didn't work" };
+// "In Jellyfin" only once Jellyfin itself lists it for this person.
+const label = (j) => j.status === "done" && j.in_jellyfin ? "✓ In Jellyfin" : LABEL[j.status] || j.status;
+const songs = (n) => `${n} song${n === 1 ? "" : "s"}`;
+const whoParam = () => who ? `&who=${encodeURIComponent(who)}` : "";
 let jobsTimer = null;
 async function loadJobs() {
   clearTimeout(jobsTimer);
@@ -313,10 +396,16 @@ async function loadJobs() {
       img(j.thumb),
       el("div", { className: "grow" },
         el("div", { className: "t", textContent: j.title }),
-        el("div", { className: "s", textContent: j.detail || j.artist })),
-      el("span", { className: `status ${j.status}`, textContent: LABEL[j.status] || j.status })))
+        el("div", { className: "s", textContent: j.status === "done" && !j.in_jellyfin ? `${j.detail} — showing up in Jellyfin soon` : (j.detail || j.artist) })),
+      el("span", { className: `status ${j.status}`, textContent: label(j) })))
       : [msg("Nothing added yet.")]));
-    jobsTimer = setTimeout(loadJobs, busy ? 3000 : 20000);
+    const st = await api(`api/status?${whoParam().slice(1)}`);
+    const full = st.waiting >= st.cap;
+    $("banner").hidden = !full;
+    $("banner").textContent = full ? `You have ${st.waiting} things on the way — wait for one to finish, then add more.` : "";
+    const pending = jobs.some((j) => j.status === "done" && !j.in_jellyfin && Date.now() / 1000 - j.updated < 600);
+    jobsTimer = setTimeout(loadJobs, busy || pending ? 3000 : 20000);
+    if (currentView === "queue") showQueue(true);
   } catch { jobsTimer = setTimeout(loadJobs, 10000); }
 }
 

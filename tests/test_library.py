@@ -79,5 +79,6 @@ def test_library_ok(tmp_path):
     lib.mkdir()
     (lib / ".add-music-staging").mkdir()
     assert "mounted" in library.library_ok(lib)   # only dot-entries: looks unmounted
+    assert library.library_ok(lib, need_entries=False) is None
     (lib / "Some Artist").mkdir()
     assert library.library_ok(lib) is None

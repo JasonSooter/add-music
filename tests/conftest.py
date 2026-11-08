@@ -63,3 +63,37 @@ def make_jpeg(w: int, h: int) -> bytes:
     out = io.BytesIO()
     Image.new("RGB", (w, h), (200, 30, 30)).save(out, "JPEG")
     return out.getvalue()
+
+
+class FakeResponse:
+    def __init__(self, data):
+        self._data = data
+        self.content = b"\xff\xd8jpeg"
+        self.headers = {"content-type": "image/jpeg"}
+
+    def json(self):
+        return self._data
+
+
+def jellyfin_with(albums=(), tracks=(), folders=(), users=()):
+    """A Jellyfin client whose HTTP calls answer from these lists."""
+    from add_music.jellyfin import Jellyfin
+
+    jf = Jellyfin("http://jf", "key")
+    jf.posts = []
+
+    def get(path, **params):
+        if path == "/Users":
+            return FakeResponse(list(users) or [{"Name": n, "Id": f"id-{n}"} for n in ("ellie.sooter", "mac.sooter")])
+        if path == "/Items":
+            kind = params["IncludeItemTypes"]
+            return FakeResponse({"Items": list(albums if kind == "MusicAlbum" else tracks)})
+        if path == "/Library/VirtualFolders":
+            return FakeResponse(list(folders))
+        if path.endswith("/Images/Primary"):
+            return FakeResponse(None)
+        raise AssertionError(path)
+
+    jf._get = get
+    jf._post = lambda path, json=None, **params: jf.posts.append((path, json, params))
+    return jf
