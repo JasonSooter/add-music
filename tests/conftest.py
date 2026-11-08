@@ -24,6 +24,8 @@ class FakeYT:
         return ["rolf zuckowski", "rolf zuckowski kinderlieder"]
 
     def search(self, q, filter=None):
+        if "clean" in q and f"{filter}_clean" in self.searches:
+            return copy.deepcopy(self.searches[f"{filter}_clean"])
         return copy.deepcopy(self.searches[filter])
 
     def get_album(self, browse_id):

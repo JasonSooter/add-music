@@ -213,13 +213,13 @@ const songRow = (s) => el("div", { className: "row" },
   img(s.thumb),
   el("div", { className: "grow" },
     el("div", { className: "t", textContent: s.title }),
-    el("div", { className: "s", textContent: [s.artists, s.album?.name].filter(Boolean).join(" · ") })),
+    el("div", { className: "s", textContent: [s.artists, s.album?.name, s.clean ? "clean version" : null].filter(Boolean).join(" · ") })),
   action(s.state, "+ Add", { kind: "song", id: s.id, album_id: s.album?.id || null }));
 
 const albumCard = (a) => {
   const c = el("div", { className: "card clickable" }, img(a.thumb),
     el("div", { className: "t", textContent: a.title }),
-    el("div", { className: "s", textContent: [a.artists, a.year, a.kind !== "Album" ? a.kind : null].filter(Boolean).join(" · ") }),
+    el("div", { className: "s", textContent: [a.artists, a.year, a.kind !== "Album" ? a.kind : null, a.clean ? "clean version" : null].filter(Boolean).join(" · ") }),
     a.state ? badge(a.state) : null);
   c.onclick = () => openAlbum(a.id);
   return c;

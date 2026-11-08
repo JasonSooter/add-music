@@ -18,7 +18,7 @@ def test_search_normalises_and_hides_explicit(yt):
     assert yt.searches["songs"][1]["videoId"] in song_ids
     assert yt.searches["albums"][0]["browseId"] not in [a["id"] for a in r["albums"]]
     s = r["songs"][0]
-    assert set(s) == {"type", "id", "title", "artists", "album", "duration", "thumb"}
+    assert set(s) == {"type", "id", "title", "artists", "album", "duration", "thumb", "clean"}
     assert s["album"]["id"].startswith("MPREb_")
     assert r["artists"][0]["id"].startswith("UC")
 
@@ -86,3 +86,43 @@ def test_song_without_album_is_its_own_album(yt):
     yt.watch["tracks"][0]["album"] = None
     p = Catalog(yt).resolve("song", "abc", None)
     assert p.album == yt.watch["tracks"][0]["title"] and p.total == 1 and p.tracks[0].number == 1
+
+
+def _song(vid, explicit, title="pretty isn't pretty", artist="Olivia Rodrigo"):
+    return {"videoId": vid, "title": title, "artists": [{"name": artist}], "album": {"name": "GUTS", "id": "MPREb_x"},
+            "isExplicit": explicit, "thumbnails": []}
+
+
+def test_explicit_song_is_swapped_for_its_clean_version(yt):
+    yt.searches["songs"] = [_song("explicit1", True), _song("other", False, "lacy")]
+    yt.searches["songs_clean"] = [_song("explicit1", True), _song("clean1", False)]
+    songs = Catalog(yt).search("pretty isn't pretty")["songs"]
+    assert [(s["id"], s["clean"]) for s in songs] == [("clean1", True), ("other", False)]
+
+
+def test_explicit_song_without_clean_version_is_dropped(yt):
+    yt.searches["songs"] = [_song("explicit1", True), _song("other", False, "lacy")]
+    yt.searches["songs_clean"] = [_song("explicit1", True), _song("x", False, "something else")]
+    assert [s["id"] for s in Catalog(yt).search("q")["songs"]] == ["other"]
+
+
+def test_explicit_album_is_swapped_for_its_clean_edition(yt):
+    explicit = {**yt.albums["MPREb_EGhFrDL8Sd9"], "isExplicit": True,
+                "other_versions": [{"title": "GUTS", "browseId": "MPREb_EGhFrDL8Sd9", "isExplicit": False,
+                                    "artists": [{"name": "Olivia Rodrigo"}], "thumbnails": [], "type": "Album"}]}
+    yt.albums["MPREb_explicit"] = explicit
+    yt.searches["albums"] = [{"browseId": "MPREb_explicit", "title": "GUTS", "isExplicit": True,
+                              "artists": [{"name": "Olivia Rodrigo"}], "thumbnails": [], "type": "Album", "year": "2023"}]
+    [a] = Catalog(yt).search("guts")["albums"]
+    assert a["id"] == "MPREb_EGhFrDL8Sd9" and a["clean"] is True
+    # Opening the explicit album shows the clean edition instead of refusing.
+    assert Catalog(yt).album("MPREb_explicit")["id"] == "MPREb_EGhFrDL8Sd9"
+
+
+def test_album_with_explicit_songs_opens_clean_edition(yt):
+    mixed = {**yt.albums["MPREb_EGhFrDL8Sd9"], "isExplicit": False,
+             "other_versions": [{"title": "GUTS", "browseId": "MPREb_EGhFrDL8Sd9", "isExplicit": False}]}
+    mixed["tracks"] = [{**t, "isExplicit": i < 3} for i, t in enumerate(mixed["tracks"])]
+    yt.albums["MPREb_mixed"] = mixed
+    a = Catalog(yt).album("MPREb_mixed")
+    assert a["id"] == "MPREb_EGhFrDL8Sd9" and len(a["tracks"]) == 26
