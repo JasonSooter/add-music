@@ -151,6 +151,9 @@ const toast = (text) => {
 };
 
 let who = null;
+// Bumped whenever the person changes: a response that started for the
+// previous person is thrown away instead of drawn.
+let gen = 0;
 try { who = localStorage.getItem("add-music-who"); } catch {}
 
 async function pickWho() {
@@ -158,7 +161,11 @@ async function pickWho() {
   $("people").replaceChildren(...people.map((p) =>
     el("button", { type: "button", textContent: p, onclick: () => {
       who = p; try { localStorage.setItem("add-music-who", p); } catch {}
-      $("pick").close(); showWho(); loadJobs();
+      $("pick").close(); showWho();
+      gen++; lastResults = null; loadJobs();
+      // Redraw for the new person: badges and "My library" are per person.
+      if (currentView === "find" && $("q").value.trim()) search($("q").value);
+      else setView(currentView);
     } })));
   $("pick").showModal();
 }
@@ -246,7 +253,10 @@ async function search(q) {
   if (!q.trim()) return;
   view(msg("Searching…"));
   try {
-    lastResults = await api(`api/search?q=${encodeURIComponent(q)}${whoParam()}`);
+    const g = gen;
+    const res = await api(`api/search?q=${encodeURIComponent(q)}${whoParam()}`);
+    if (g !== gen) return;
+    lastResults = res;
     const counts = ["songs", "albums", "artists"].map((k) => lastResults[k].length);
     if (!lastResults[tab].length) tab = ["songs", "albums", "artists"][counts.findIndex((n) => n)] || "songs";
     history.replaceState(null, "", `#q=${encodeURIComponent(q)}`);
@@ -260,7 +270,9 @@ const backBtn = () => el("button", { className: "back", type: "button", textCont
 async function openAlbum(id) {
   view(msg("Loading album…"));
   try {
+    const g = gen;
     const a = await api(`api/album/${encodeURIComponent(id)}?${whoParam().slice(1)}`);
+    if (g !== gen) return;
     view(backBtn(),
       el("div", { className: "hero" }, img(a.thumb),
         el("div", {},
@@ -279,7 +291,9 @@ async function openAlbum(id) {
 async function openArtist(id) {
   view(msg("Loading…"));
   try {
+    const g = gen;
     const a = await api(`api/artist/${encodeURIComponent(id)}?${whoParam().slice(1)}`);
+    if (g !== gen) return;
     view(backBtn(),
       el("div", { className: "hero artist" }, img(a.thumb), el("div", {}, el("h2", { textContent: a.title }))),
       a.albums.length ? [el("h3", { textContent: "Albums" }), el("div", { className: "grid" }, a.albums.map(albumCard))] : null,
@@ -309,8 +323,9 @@ async function showLibrary() {
   if (!who) return pickWho();
   view(msg("Loading your library…"));
   try {
+    const g = gen;
     const lib = await api(`api/library?${whoParam().slice(1)}`);
-    if (currentView !== "library") return;
+    if (currentView !== "library" || g !== gen) return;
     if (!lib.connected) return view(msg("Can't reach Jellyfin right now."));
     view(
       el("h3", { textContent: `${who}'s music (${lib.mine.length})` }),
@@ -392,7 +407,9 @@ async function loadJobs() {
   clearTimeout(jobsTimer);
   if (!who) return;
   try {
+    const g = gen;
     const jobs = await api(`api/requests?who=${encodeURIComponent(who)}`);
+    if (g !== gen) return;
     const busy = jobs.filter((j) => j.status === "queued" || j.status === "working").length;
     $("trayTitle").textContent = `My music${busy ? ` — ${busy} on the way` : ""}`;
     $("jobs").replaceChildren(...(jobs.length ? jobs.map((j) => el("div", { className: "row" },
