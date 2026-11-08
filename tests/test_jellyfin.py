@@ -51,3 +51,8 @@ def test_edition_labels_are_ignored():
     assert idx.album_source("Hamilton (Original Broadway Cast Recording)", "Lin-Manuel Miranda") == "shared"
     assert idx.album_source("Hamilton (Instrumentals)", "Lin-Manuel Miranda") is None
     assert idx.track_source("My Shot (feat. Anthony Ramos)", "Hamilton (Original Broadway Cast Recording)") == "shared"
+
+
+def test_live_and_instrumental_versions_are_different_recordings():
+    assert base_title("Hey Jude (Live Version)") == "heyjudeliveversion"
+    assert base_title("My Shot (Instrumental Version)") == "myshotinstrumentalversion"
