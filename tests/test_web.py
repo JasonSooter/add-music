@@ -179,3 +179,18 @@ def test_simultaneous_requests_cannot_both_pass(env):
     for t in threads: t.start()
     for t in threads: t.join()
     assert sorted(codes) == [201, 409]
+
+
+
+def test_queued_song_needs_same_artist(env, yt):
+    client = env[0]
+    add(client)
+    plan = env[1].plan_of(1)
+    t = plan.tracks[0]
+    album = {"name": plan.album, "id": "MPREb_somethingElse"}
+    yt.searches["songs"] = [
+        {"videoId": "same1", "title": t.title, "artists": [{"name": t.artist}], "album": album, "isExplicit": False},
+        {"videoId": "diff1", "title": t.title, "artists": [{"name": "Somebody Else"}], "album": album, "isExplicit": False},
+    ]
+    songs = client.get("/api/search", params={"q": "x", "who": "Ellie"}).json()["songs"]
+    assert [(s["id"], s["state"]) for s in songs] == [("same1", "queued"), ("diff1", None)]
