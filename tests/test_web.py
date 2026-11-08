@@ -161,3 +161,21 @@ def test_works_without_jellyfin(tmp_path, yt):
     client = TestClient(app)
     assert client.get("/api/library", params={"who": "Ellie"}).json()["connected"] is False
     assert add(client).status_code == 201
+
+
+def test_simultaneous_requests_cannot_both_pass(env):
+    """Two taps at once: the second must see the first job, not race past it."""
+    import threading
+    client, store = env[0], env[1]
+    real_add = store.add
+
+    def slow_add(*a, **k):
+        time.sleep(0.3)          # widen the window between the check and the insert
+        return real_add(*a, **k)
+
+    store.add = slow_add
+    codes = []
+    threads = [threading.Thread(target=lambda: codes.append(add(client).status_code)) for _ in range(2)]
+    for t in threads: t.start()
+    for t in threads: t.join()
+    assert sorted(codes) == [201, 409]

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import logging
 import re
+import threading
 import time
 from importlib.resources import files
 from pathlib import Path
@@ -40,6 +41,11 @@ def create_app(catalog: Catalog, store: Store, worker: Worker | None, people: di
                jellyfin: Jellyfin | None, people_dir: Path, *, cap: int = 3, cooldown: float = 3600) -> FastAPI:
     app = FastAPI(title="add-music", docs_url=None, redoc_url=None, openapi_url=None)
     index_html = files("add_music").joinpath("static/index.html").read_text(encoding="utf-8")
+    # Checking the rules and queueing the job happen as one step: FastAPI runs
+    # these handlers on a thread pool, so two taps at once could otherwise both
+    # pass the cap or duplicate check before either job exists. One process,
+    # so a lock is enough.
+    admit = threading.Lock()
 
     # ---- helpers ------------------------------------------------------------
 
@@ -207,11 +213,12 @@ def create_app(catalog: Catalog, store: Store, worker: Worker | None, people: di
     def add(req: AddRequest):
         p = person(req.who)
         plan = upstream(catalog.resolve, req.kind, req.id, req.album_id)
-        gate(p, req, plan)
         title = plan.album if req.kind == "album" else plan.tracks[0].title
         artist = plan.album_artist if req.kind == "album" else plan.tracks[0].artist
         cover_url = plan.cover_url.replace("=w1200-h1200", "=w226-h226")
-        job = store.add(p.name, req.kind, req.id, title, artist, cover_url, plan)
+        with admit:
+            gate(p, req, plan)
+            job = store.add(p.name, req.kind, req.id, title, artist, cover_url, plan)
         log.info("job %s: %s asked for %s %r by %r", job["id"], p.name, req.kind, title, artist)
         if worker:
             worker.poke()
